@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../../models/User');
+const {User} = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
@@ -12,3 +12,4 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
       });
   });
+
