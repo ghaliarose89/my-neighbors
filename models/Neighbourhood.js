@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Comment extends Model { }
+class Neighbourhood extends Model {}
 
-Comment.init(
+Neighbourhood.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -11,13 +11,15 @@ Comment.init(
 			allowNull: false,
 			primaryKey: true,
 		},
-		comment_text: {
+		neighbourhood_name: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
-		post_id: {
+		zip1: {
 			type: DataTypes.INTEGER,
+			allowNull: false,
 		},
-		user_id: {
+		zip2: {
 			type: DataTypes.INTEGER,
 		},
 	},
@@ -25,7 +27,8 @@ Comment.init(
 		sequelize,
 		freezeTableName: true,
 		underscored: false,
-		modelName: "comment",
+		modelName: "neighbourhood",
+		timestamps: false
 	}
 );
-module.exports = Comment;
+module.exports = Neighbourhood;
