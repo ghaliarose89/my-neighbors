@@ -1,4 +1,5 @@
 const Comment = require("./Comment");
 const Event = require("./Event");
-
-module.exports = { Comment, Event };
+const Post = require("./Post");
+const User = require("./User");
+module.exports = { Comment, Event, Post, User };
