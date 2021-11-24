@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const {User} = require('../../models');
+const {User,Post} = require('../../models');
+
 
 // get all users
 router.get('/', (req, res) => {
@@ -51,13 +52,14 @@ router.get('/', (req, res) => {
       address:req.body.address,
       city:req.body.city,
       zip:req.body.zip,
-      IsAdmin:req.body.IsAdmin,
+      isAdmin:req.body.IsAdmin,
     })
       .then(dbUserData => {
         req.session.save(() => {
           req.session.user_id = dbUserData.id;
           req.session.username = dbUserData.username;
           req.session.loggedIn = true;
+          req.session.isAdmin= dbUserData.isAdmin;
   
           res.json(dbUserData);
         });
@@ -67,5 +69,7 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
       });
   });
+
+  
   
   module.exports = router;

@@ -5,12 +5,12 @@ const User = require('../../models/User');
 // get all posts with post owner
 router.get('/', (req, res) => {
     Post.findAll({
-        include: [
-            {
-                model: User,
-                attributes: ['first_name', 'last_name'],
-            }
-        ]
+        // include: [
+        //     {
+        //         model: User,
+        //         attributes: ['first_name', 'last_name'],
+        //     }
+        // ]
     })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
