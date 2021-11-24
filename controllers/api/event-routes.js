@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const Event = require("../../models/Event");
 const { Op } = require("sequelize");
-const { request } = require("express");
+
 //GET all events
 router.get("/", (req, res) => {
 	Event.findAll({
