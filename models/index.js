@@ -5,7 +5,7 @@ const User = require("./User");
 const Neighbourhood = require("./Neighborhood");
 const LikedPosts = require ('./LikedPosts');
 
-//assotiations
+//associations
 User.hasMany(Post, {
     foreignKey: 'user_id'
   });
