@@ -1,5 +1,5 @@
 
-DROP DATABASE IF EXISTS neighbours_db;
+DROP DATABASE IF EXISTS neighbors_db;
 
-CREATE DATABASE neighbours_db;
+CREATE DATABASE neighbors_db;
 
