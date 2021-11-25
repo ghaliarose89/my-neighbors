@@ -1,0 +1,148 @@
+<section class="py-5">
+	<div class="container px-5">
+		<!-- signup form-->
+		<div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+			<div class="text-center mb-5">
+				<div class="feature rounded-3 "> 
+				<h1 class="fw-bolder">New User SignUp</h1>
+				<p class="lead fw-normal text-muted mb-0">Please fill up the form to add you in your community portal</p>
+			</div>
+			<div class="row gx-5 justify-content-center">
+				<div class="col-lg-8 col-xl-6">
+					<div class="invalid-feedback" ></div>
+					<form id="signupform">
+						<!-- Name input-->
+						<div class="form-floating mb-3">
+							<input
+								class="form-control"
+								id="first_name"
+								type="text"
+								placeholder="Enter your first name..."
+							/>
+							<label for="first_name">First name</label>
+
+						</div>
+            			<div class="form-floating mb-3">
+							<input
+								class="form-control"
+								id="last_name"
+								type="text"
+								placeholder="Enter your last name..."
+							/>
+							<label for="last_name">Last name</label>
+
+{{!-- address --}}
+						</div>
+            			<div class="form-floating mb-3">
+							<input
+								class="form-control"
+								id="address"
+								type="text"
+								placeholder="Enter your last name..."
+							/>
+							<label for="address">Address</label>
+
+						</div>
+                 			<div class="form-floating mb-3">
+							<input
+								class="form-control"
+								id="city"
+								type="text"
+								placeholder="Enter the City."
+							/>
+							<label for="city">City</label>
+
+						</div>
+                     			<div class="form-floating mb-3">
+							<input
+								class="form-control"
+								id="state"
+								type="text"
+								placeholder="Enter the State"
+							/>
+							<label for="state">State</label>
+
+						</div>
+
+                     			<div class="form-floating mb-3">
+							<input
+								class="form-control"
+								id="zip"
+								type="text"
+								placeholder="Enter the Zip Code"
+							/>z
+							<label for="zip">Zip</label>
+
+						</div>
+						<!-- Email address input-->
+						<div class="form-floating mb-3">
+							<input
+								class="form-control"
+								id="email"
+								type="email"
+								placeholder="name@example.com"
+							/>
+							<label for="email">Email address</label>
+              
+							{{! <div class="invalid-feedback" data-sb-feedback="email:required">An
+								email is required.</div>
+							<div class="invalid-feedback" data-sb-feedback="email:email">Email
+								is not valid.</div> }}
+						</div>
+						<!-- Phone number input-->
+						<div class="form-floating mb-3">
+							<input
+								class="form-control"
+								id="password"
+								type="password"
+								placeholder="password"
+								
+							/>
+							<label for="password">Password</label>
+
+						</div>
+						<!-- Message input-->
+						<div class="form-floating mb-3">
+							<textarea
+								class="form-control"
+								id="message"
+								type="text"
+								placeholder="Enter your message here..."
+								style="height: 10rem"
+								data-sb-validations="required"
+							></textarea>
+							<label for="message">Message</label>
+						</div>
+						<!-- Submit success message-->
+						<!---->
+						<!-- This is what your users will see when the form-->
+						<!-- has successfully submitted-->
+						{{! <div class="d-none" id="submitSuccessMessage">
+							<div class="text-center mb-3">
+								<div class="fw-bolder">Form submission successful!</div>
+								To activate this form, sign up at
+								<br />
+								<a
+									href="https://startbootstrap.com/solution/contact-forms"
+								>https://startbootstrap.com/solution/contact-forms</a>
+							</div>
+						</div> }}
+						<!-- Submit error message-->
+						<!---->
+						<!-- This is what your users will see when there is-->
+						<!-- an error submitting the form-->
+						<div class="d-none" id="submitErrorMessage"><div
+								class="text-center text-danger mb-3"
+							>Error sending message!</div></div>
+						<!-- Submit Button-->
+						<div class="d-grid"><button
+								class="btn btn-primary btn-lg disabled"
+								id="submitButton"
+								type="submit"
+							>Submit</button></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
