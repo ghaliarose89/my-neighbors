@@ -2,7 +2,7 @@ const Comment = require("./Comment");
 const Event = require("./Event");
 const Post = require("./Post");
 const User = require("./User");
-const Neighbourhood = require("./Neighbourhood");
+const Neighbourhood = require("./Neighborhood");
 const LikedPosts = require ('./LikedPosts');
 
 //assotiations
