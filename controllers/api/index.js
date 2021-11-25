@@ -10,4 +10,5 @@ router.use("/posts", postRoutes);
 router.use("/comments", commentRoutes);
 router.use("/events", eventRoutes);
 router.use("/neighbourhoods", neighbourhoodRoutes);
+router.use
 module.exports = router;
