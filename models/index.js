@@ -5,9 +5,20 @@ const User = require("./User");
 const Neighbourhood = require("./Neighborhood");
 const LikedPosts = require ('./LikedPosts');
 
-//User can write many posts
+//assotiations
 User.hasMany(Post, {
-  model: User,
+    foreignKey: 'user_id'
+  });
   
-})
+Post.belongsTo(User, {
+    foreignKey: 'user_id',
+  });
+
+
+
+
+
+
+
+
 module.exports = { Comment, Event, Post, User, Neighbourhood , LikedPosts };
