@@ -5,7 +5,7 @@ const User = require("./User");
 const Neighbourhood = require("./Neighborhood");
 const LikedPosts = require ('./LikedPosts');
 
-//assotiations
+//associations
 User.hasMany(Post, {
     foreignKey: 'user_id'
   });
@@ -13,6 +13,15 @@ User.hasMany(Post, {
 Post.belongsTo(User, {
     foreignKey: 'user_id',
   });
+
+User.belongsToMany(Post,{
+  through:'LikedPosts',
+  foreignKey:'user_id'
+})
+Post.belongsToMany(User,
+ { through:'LikedPosts',
+  foreignKey:'post_id'
+})
 
 
 

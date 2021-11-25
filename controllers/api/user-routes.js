@@ -6,13 +6,13 @@ const { User, Post } = require('../../models');
 // get all users
 router.get("/", (req, res) => {
 	User.findAll({
-		//attributes: { exclude: ["password"] },
-		// include: [
-		// 	{
-		// 		model: Post,
-		// 		attributes: ["id", "title", "post_details", "created_at"],
-		// 	},
-		// ],
+		attributes: { exclude: ["password"] },
+		include: [
+			{
+				model: Post,
+				attributes: ["id", "title", "post_details", "created_at"],
+			},
+		],
 	})
 		.then((dbUserData) => res.json(dbUserData))
 		.catch((err) => {
@@ -28,12 +28,12 @@ router.get("/:id", (req, res) => {
 		where: {
 			id: req.params.id,
 		},
-		// include: [
-		// 	{
-		// 		model: Post,
-		// 		attributes: ["id", "title", "post_details", "created_at"],
-		// 	},
-		// ],
+		include: [
+			{
+				model: Post,
+				attributes: ["id", "title", "post_details", "created_at"],
+			},
+		],
 	})
 		.then((dbUserData) => {
 			if (!dbUserData) {

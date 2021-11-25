@@ -2,10 +2,9 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container px-5">
         <a class="navbar-brand" href="homepage.handlebars">My Neighbors</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation"><span
-                        class="navbar-toggler-icon"></span></button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="homepage.handlebars">Home</a></li>
@@ -18,41 +17,62 @@
 </nav>
 <!-- Hero -->
 <header class="hero py-5">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center justify-content-center">
-                    <div class="col-lg-8 col-xl-7 col-xxl-6">
-                        <div class="my-5 text-center text-xl-start">
-                            <h1 class="display-5 fw-bolder text-white mb-2">Welcome To The Neighborhood!
-                            </h1>
-                            <p class="lead fw-bold text-warning mb-4">Sign in to view community posts and events</p>
-                            
-                        </div>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Welcome To The Neighborhood!
+                    </h1>
+                    <p class="lead fw-bold text-warning mb-4">Sign in to view community posts and events</p>
+
+                </div>
+            </div>
+            <!-- backgeround image-->
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                <div class="col-md-7">
+                    {{!-- login-form --}}
+                    <div class="card-body">
+                        <p class="login-card-description">Sign into your account</p>
+                        <form action="#!">
+                            <div class="form-group">
+                                <label for="email" class="sr-only">Email</label>
+                                <input type="email" name="email" id="email" class="form-control"
+                                    placeholder="Email address">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password" class="sr-only">Password</label>
+                                <input type="password" name="password" id="password" class="form-control"
+                                    placeholder="***********">
+                            </div>
+                            <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button"
+                                value="Login">
+                        </form>
+                        <p class="login-card-footer-text">Don't have an account? <a href="#!"
+                                class="text-reset">Register here</a></p>
                     </div>
-                    <!-- backgeround image-->
-                     <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
-                         <img class="img-fluid rounded-3 my-5" src="./assets/images/homes2.jpeg"/>
-                     </div>
-                </div> 
-                </div>
-        </header>
-
-<section id="event-calendar">
-<!-- Calendar -->
-</section>
-
-<footer class="bg-dark py-4 mt-auto">
-        <div class="container px-5">
-            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                <div class="col-auto">
-                    <div class="small m-0 text-white">Copyright &copy; Your Website 2021</div>
-                </div>
-                <div class="col-auto">
-                    <a class="link-light small" href="#!">Privacy</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#!">Terms</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#!">Contact Us</a>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</header>
+
+<section id="event-calendar">
+    <!-- Calendar -->
+</section>
+
+<footer class="bg-dark py-4 mt-auto">
+    <div class="container px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto">
+                <div class="small m-0 text-white">Copyright &copy; Your Website 2021</div>
+            </div>
+            <div class="col-auto">
+                <a class="link-light small" href="#!">Privacy</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a class="link-light small" href="#!">Terms</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a class="link-light small" href="#!">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</footer>
