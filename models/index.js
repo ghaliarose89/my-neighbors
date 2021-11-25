@@ -14,6 +14,15 @@ Post.belongsTo(User, {
     foreignKey: 'user_id',
   });
 
+User.belongsToMany(Post,{
+  through:'LikedPosts',
+  foreignKey:'user_id'
+})
+Post.belongsToMany(User,
+ { through:'LikedPosts',
+  foreignKey:'post_id'
+})
+
 
 
 
