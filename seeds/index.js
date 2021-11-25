@@ -1,9 +1,9 @@
 const seedEvents = require("./seed-event");
 const seedComments = require("./seed-comment");
 const seedUsers = require("./seed-user");
-const seedPosts= require('./seed-post');
+const seedPosts = require("./seed-post");
 const sequelize = require("../config/connection");
-const seedNeighbourhoods = require("./seed-neighbourhood");
+const seedNeighborhoods = require("./seed-neighborhood");
 
 async function seedAll() {
 	await sequelize.sync({ force: true });
@@ -14,10 +14,10 @@ async function seedAll() {
 	console.log("\n----- COMMENTS SEEDED -----\n");
 	await seedUsers();
 	console.log("\n----- USERS SEEDED -----\n");
-	await seedNeighbourhoods();
-	console.log("\n----- NEIGHBOURHOODS SEEDED -----\n");
-	await seedPosts();
-	console.log("\n ---- post seeded");
+	await seedNeighborhoods();
+	console.log("\n----- NEIGHBORHOODS SEEDED -----\n");
+	//	await seedPosts();
+	//	console.log("\n ---- POSTS seeded");
 	process.exit(0);
 }
 seedAll();

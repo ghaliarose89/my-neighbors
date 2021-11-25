@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { Neighbourhood } = require("../../models");
+const Neighborhood = require("../../models/Neighborhood");
 
 router.get("/", (req, res) => {
-	Neighbourhood.findAll()
+	Neighborhood.findAll()
 		.then((dbResultData) => res.json(dbResultData))
 		.catch((err) => {
 			console.log(err);
@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 		});
 });
 router.get("/:id", (req, res) => {
-	Neighbourhood.findOne({
+	Neighborhood.findOne({
 		where: {
 			id: req.params.id,
 		},
@@ -24,8 +24,8 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
 	// expects => {comment_text: "This is the comment", user_id: 1, post_id: 2}
-	Neighbourhood.create({
-		neighbourhood_name: neighbourhood_name,
+	Neighborhood.create({
+		neighborhood_name: req.body.neighborhood_name,
 		zip1: req.body.zip1,
 		zip2: req.body.zip2,
 	})
@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-	Neighbourhood.update(req.body, {
+	Neighborhood.update(req.body, {
 		where: {
 			id: req.params.id,
 		},
@@ -56,7 +56,7 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-	Neighbourhood.destroy({
+	Neighborhood.destroy({
 		where: {
 			id: req.params.id,
 		},

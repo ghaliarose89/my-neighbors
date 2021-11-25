@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Neighbourhood extends Model {}
+class Neighborhood extends Model {}
 
-Neighbourhood.init(
+Neighborhood.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -11,7 +11,7 @@ Neighbourhood.init(
 			allowNull: false,
 			primaryKey: true,
 		},
-		neighbourhood_name: {
+		neighborhood_name: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
@@ -27,8 +27,8 @@ Neighbourhood.init(
 		sequelize,
 		freezeTableName: true,
 		underscored: false,
-		modelName: "neighbourhood",
-		timestamps: false
+		modelName: "neighborhood",
+		timestamps: false,
 	}
 );
-module.exports = Neighbourhood;
+module.exports = Neighborhood;
