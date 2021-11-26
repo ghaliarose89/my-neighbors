@@ -64,6 +64,14 @@
 
 	--ceruleon: #4484ce;
 	--aluminium: #d9d9d9;
+	--primary-color: #4484ce;
+	--secondary-color: #d9d9d9;
+	--third-color: #f19f4d;
+	--light: #f9cf00;
+	--applecore: #dcc7aa;
+	--blueberry: #6b7a8f;
+	--orche: #c06014;
+	--honey: #dcae1d;
 }
 
 *,
@@ -71,7 +79,77 @@
 *::after {
 	box-sizing: border-box;
 }
-
+.lead {
+	font-size: 1.25rem;
+	font-weight: 300;
+	width: 100%;
+	/* color: var(--blueberry); */
+}
+.feature {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 3rem;
+	width: 3rem;
+	font-size: 1.5rem;
+}
+.login-card .card-body {
+	padding: 85px 60px 60px;
+}
+@media (max-width: 422px) {
+	.login-card .card-body {
+		padding: 35px 24px;
+	}
+}
+.login-card-description {
+	font-size: 25px;
+	color: var(--light); /* #cae4db;*/
+	font-weight: normal;
+	margin-bottom: 23px;
+}
+.login-card form {
+	max-width: 326px;
+}
+.login-card .form-control {
+	border: 1px solid #d5dae2;
+	padding: 15px 25px;
+	margin-bottom: 20px;
+	min-height: 45px;
+	font-size: 13px;
+	line-height: 15;
+	font-weight: normal;
+}
+.login-card .form-control::-webkit-input-placeholder {
+	color: #919aa3;
+}
+.login-card .form-control::-moz-placeholder {
+	color: #919aa3;
+}
+.login-card .form-control:-ms-input-placeholder {
+	color: #919aa3;
+}
+.login-card .form-control::-ms-input-placeholder {
+	color: #919aa3;
+}
+.login-card .form-control::placeholder {
+	color: #919aa3;
+}
+/* .login-card .login-btn { */
+#login {
+	padding: 13px 20px 12px;
+	background-color: var(--bs-blue);
+	border-radius: 4px;
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #fff;
+	margin-bottom: 24px;
+}
+.login-card .login-btn:hover {
+	border: 1px solid #000;
+	background-color: transparent;
+	color: #000;
+}
 @media (prefers-reduced-motion: no-preference) {
 	:root {
 		scroll-behavior: smooth;
@@ -511,11 +589,6 @@ progress {
 
 [hidden] {
 	display: none !important;
-}
-
-.lead {
-	font-size: 1.25rem;
-	font-weight: 300;
 }
 
 .display-1 {
@@ -11662,15 +11735,6 @@ fieldset:disabled .btn {
 body,
 html {
 	height: 100%;
-}
-
-.feature {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	height: 3rem;
-	width: 3rem;
-	font-size: 1.5rem;
 }
 
 .bg-featured-blog {
