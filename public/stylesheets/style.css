@@ -11745,3 +11745,7 @@ html {
 	background-repeat: no-repeat;
 	min-height: 15rem;
 }
+
+#nav {
+	background-color: #0c63e4;
+}
