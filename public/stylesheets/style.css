@@ -71,7 +71,7 @@
 	--applecore: #dcc7aa;
 	--blueberry: #6b7a8f;
 	--orche: #c06014;
-	--honey: #dcae1d;
+	--honey1: #dcae1d;
 }
 
 *,
@@ -85,6 +85,10 @@
 	width: 100%;
 	/* color: var(--blueberry); */
 }
+.signup-header {
+	background-color: var(--honey1);
+	color: white;
+}
 .feature {
 	display: inline-flex;
 	align-items: center;
@@ -92,6 +96,7 @@
 	height: 3rem;
 	width: 3rem;
 	font-size: 1.5rem;
+	background-color: var(--ceruleon);
 }
 .login-card .card-body {
 	padding: 85px 60px 60px;
