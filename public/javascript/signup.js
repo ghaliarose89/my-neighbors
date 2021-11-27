@@ -121,6 +121,11 @@ const loadNeighborhoodsData = async () => {
 	} else return null;
 };
 const loadData = () => {
+	let allInputs = document.querySelectorAll(".form-control,.form-select");
+	for (let i = 0; i < allInputs.length; i++) {
+		allInputs[i].addEventListener("focus", changeBgColor);
+	}
+	console.log(allInputs);
 	loadNeighborhoodsData()
 		.then((data) => {
 			neighborhoods = data;
@@ -130,7 +135,12 @@ const loadData = () => {
 		.then((err) => {});
 };
 
+function changeBgColor() {
+	if (this.style.backgroundColor == "red") this.style.backgroundColor = "white";
+}
+
 document
 	.getElementById("submitButton")
 	.addEventListener("click", signupFormHandler);
+
 loadData();
