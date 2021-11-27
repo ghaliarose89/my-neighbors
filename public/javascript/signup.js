@@ -106,11 +106,12 @@ const signupFormHandler = async (event) => {
 		}),
 		headers: { "Content-Type": "application/json" },
 	});
-	// if (response.ok) {
-	console.log("success");
-	//		} else {
-	//			alert(response.statusText);
-	//		}
+	if (response.ok) {
+		console.log("success");
+		document.location.replace("/");
+	} else {
+		alert(response.statusText);
+	}
 };
 
 const loadNeighborhoodsData = async () => {
