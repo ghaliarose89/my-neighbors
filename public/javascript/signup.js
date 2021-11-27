@@ -106,11 +106,12 @@ const signupFormHandler = async (event) => {
 		}),
 		headers: { "Content-Type": "application/json" },
 	});
-	// if (response.ok) {
-	console.log("success");
-	//		} else {
-	//			alert(response.statusText);
-	//		}
+	if (response.ok) {
+		console.log("success");
+		document.location.replace("/");
+	} else {
+		alert(response.statusText);
+	}
 };
 
 const loadNeighborhoodsData = async () => {
@@ -121,6 +122,11 @@ const loadNeighborhoodsData = async () => {
 	} else return null;
 };
 const loadData = () => {
+	let allInputs = document.querySelectorAll(".form-control,.form-select");
+	for (let i = 0; i < allInputs.length; i++) {
+		allInputs[i].addEventListener("focus", changeBgColor);
+	}
+	console.log(allInputs);
 	loadNeighborhoodsData()
 		.then((data) => {
 			neighborhoods = data;
@@ -130,7 +136,12 @@ const loadData = () => {
 		.then((err) => {});
 };
 
+function changeBgColor() {
+	if (this.style.backgroundColor == "red") this.style.backgroundColor = "white";
+}
+
 document
 	.getElementById("submitButton")
 	.addEventListener("click", signupFormHandler);
+
 loadData();

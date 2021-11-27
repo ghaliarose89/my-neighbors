@@ -72,6 +72,7 @@
 	--blueberry: #6b7a8f;
 	--orche: #c06014;
 	--honey1: #dcae1d;
+	--darkgray: #59575a;
 }
 
 *,
@@ -79,6 +80,27 @@
 *::after {
 	box-sizing: border-box;
 }
+
+.heroContainer {
+	background-image: url("../assets/images/homes2.jpeg");
+	background-position: center;
+	background-size: cover;
+	position: relative;
+	height: 600px;
+	display: flex;
+}
+.hero {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+.heroContainer:before {
+	content: "";
+	background: var(--darkgray);
+	width: 100%;
+	opacity: 0.5;
+}
+
 .lead {
 	font-size: 1.25rem;
 	font-weight: 300;
@@ -154,6 +176,12 @@
 	border: 1px solid #000;
 	background-color: transparent;
 	color: #000;
+}
+
+.login-card-footer-text {
+	font-weight: 700;
+	color: var(--honey1);
+	font-size: 1.2rem;
 }
 @media (prefers-reduced-motion: no-preference) {
 	:root {
@@ -2275,15 +2303,6 @@ progress {
 	}
 }
 
-.hero {
-	background-color: var(--aluminium);
-}
-
-.hero {
-	background-image: url("../assets/images/homes2.jpeg");
-	background-position: center;
-	background-size: cover;
-}
 .form-label {
 	margin-bottom: 0.5rem;
 }
