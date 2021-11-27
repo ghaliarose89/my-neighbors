@@ -62,7 +62,7 @@ User.init(
 			},
 		},
 
-		neighbourhood_id: {
+		neighborhood_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
