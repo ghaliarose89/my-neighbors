@@ -111,35 +111,29 @@
 	<section>
 		<div class="card bg-light">
 			
+				{{#each posts}}
 
 				<div class="d-flex mb-4">
 					
 					{{!-- <div class="flex-shrink-0"><img class="rounded-circle"
 							src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div> --}}
-					{{#each posts}}
-
+				
 					<div class="ms-3">
 						Post {{id}}
-						<div class="fw-bold">{{title}}</div> {{comment_count}}
+						<div class="fw-bold">{{title}}</div>  
 						{{post_details}} <br> By 
 						{{user.first_name}}<br> 
+						this post has{{comment_count}}  Comments<br>
 						On {{created_at}}<br>
-						{{#each posts}}
-						<!--  comment 1-->
-						<div class="d-flex mt-4">
-							<div class="flex-shrink-0"><img class="rounded-circle"
-									src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-							<div class="ms-3">
-								<div class="fw-bold">{{user.first_name}}</div>
-								{{comment.comment_text}}
-							</div>
-						</div>
-						{{/each}}
 						
 					</div>
+				
+					
 					
 				</div>
+					<hr>
 				{{/each}}
+				
 			
 		</div>
 
