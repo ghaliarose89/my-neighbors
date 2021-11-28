@@ -51,9 +51,7 @@ async function logout() {
 	}
 }
 
-function accessProfile() {
-    
-}
+
 if (loginBtn) {
 	loginBtn.addEventListener("click", loginForm);
 }
