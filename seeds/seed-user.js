@@ -10,7 +10,7 @@ const userData = [
 		address: "10 mainland dr",
 		city: "Woodlands",
 		zip: 77012,
-		neighbourhood_id: 1,
+		neighborhood_id: 1,
 	},
 	{
 		first_name: "misha",
@@ -20,7 +20,7 @@ const userData = [
 		address: "14 mainland dr",
 		city: "Woodlands",
 		zip: 77012,
-		neighbourhood_id: 1,
+		neighborhood_id: 1,
 	},
 	{
 		first_name: "abigail",
@@ -30,7 +30,7 @@ const userData = [
 		address: "18 mainland dr",
 		city: "Woodlands",
 		zip: 77012,
-		neighbourhood_id: 1,
+		neighborhood_id: 1,
 	},
 	{
 		first_name: "Jacob",
@@ -40,7 +40,7 @@ const userData = [
 		address: "1023 sugarland dr",
 		city: "Sugarland",
 		zip: 77001,
-		neighbourhood_id: 2,
+		neighborhood_id: 2,
 	},
 	{
 		first_name: "Cindy",
@@ -50,7 +50,7 @@ const userData = [
 		address: "724 Sundarban dr",
 		city: "Sugarland",
 		zip: 77001,
-		neighbourhood_id: 2,
+		neighborhood_id: 2,
 	},
 ];
 
