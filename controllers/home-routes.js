@@ -1,12 +1,8 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const Neighborhood = require("../models/Neighborhood");
-const {Post,User,Comment,Event } = require('../models');
+const { Post, User, Comment, Event } = require("../models");
 
-
-// router.get("/", (req, res) => {
-// 	res.render("homepage");
-// });
 router.get("/signup", (req, res) => {
 	Neighborhood.findAll()
 		.then((dbResultData) => {
@@ -26,44 +22,74 @@ router.get("/signup", (req, res) => {
 		});
 });
 //getting all posts if the user loged in
-router.get('/', (req, res) => {
-    console.log('======================');
-    Post.findAll({
-      attributes: [
-        'id',
-        'post_details',
-        'title',
-        'created_at',
-        [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
-      ],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'user_id', ],
-          include: {
-            model: User,
-            attributes: ['first_name']
-          }
-        },
-        {
-          model: User,
-          attributes: ['first_name']
-        }
-      ]
-    })
-      .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get({ plain: true }));
-        console.log(posts)
-        res.render('homepage', {
-          posts,
-          loggedIn: req.session.loggedIn
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
-  
-
+router.get("/", (req, res) => {
+	console.log("======================");
+	Post.findAll({
+		attributes: [
+			"id",
+			"post_details",
+			"title",
+		
+			// [
+			// 	sequelize.literal(
+			// 		"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+			// 	),
+			// 	"comment_count",
+			// ],
+		],
+		include: [
+			{
+				model: Comment,
+				attributes: ["id", "comment_text", "post_id", "user_id"],
+				include: {
+					model: User,
+					attributes: ["first_name"],
+				},
+			},
+			{
+				model: User,
+				attributes: ["first_name"],
+			},
+		],
+	})
+		.then((dbPostData) => {
+			const posts = dbPostData.map((post) => post.get({ plain: true }));
+			console.log(posts);
+			res.render("homepage", {
+				posts,
+				loggedIn: req.session.loggedIn,
+				user_first_name: req.session.first_name,
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
+router.get("/userprofile", (req, res) => {
+	User.findOne({
+		attributes: { exclude: ["password"] },
+		where: {
+			id: req.session.user_id,
+		},
+		include: {
+			attributes: ["neighborhood_name"],
+			model: Neighborhood,
+		},
+	})
+		.then((dbUserData) => {
+			if (!dbUserData) {
+				res.status(404).json({ message: "No user found with this id" });
+				return;
+			}
+			console.log(dbUserData);
+			const user = dbUserData.get({ plain: true });
+			res.render("userprofile", { user });
+			// res.json(dbUserData);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
 module.exports = router;
