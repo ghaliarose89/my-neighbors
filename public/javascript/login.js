@@ -33,9 +33,16 @@ async function logout() {
 		alert(response.statusText);
 	}
 }
+
+function accessProfile() {
+    
+}
 if (loginBtn) {
 	loginBtn.addEventListener("click", loginForm);
 }
 if (document.getElementById("logout")) {
-	document.getElementById("logout").addEventListener("click", logout);
+    document.getElementById("logout").addEventListener("click", logout);
+    document.getElementById("userprofileButton").addEventListener("click", accessProfile);
+
+    
 }

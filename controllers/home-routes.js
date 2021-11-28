@@ -3,9 +3,6 @@ const sequelize = require("../config/connection");
 const Neighborhood = require("../models/Neighborhood");
 const { Post, User, Comment, Event } = require("../models");
 
-// router.get("/", (req, res) => {
-// 	res.render("homepage");
-// });
 router.get("/signup", (req, res) => {
 	Neighborhood.findAll()
 		.then((dbResultData) => {
@@ -69,5 +66,25 @@ router.get("/", (req, res) => {
 			res.status(500).json(err);
 		});
 });
-
+router.get("/userprofile", (req, res) => {
+	User.findOne({
+		attributes: { exclude: ["password"] },
+		where: {
+			id: req.session.user_id,
+		},
+	})
+		.then((dbUserData) => {
+			if (!dbUserData) {
+				res.status(404).json({ message: "No user found with this id" });
+				return;
+			}
+			const user = dbUserData.get({ plain: true });
+			res.render("userprofile", { user });
+			// res.json(dbUserData);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
 module.exports = router;

@@ -6,11 +6,19 @@
 				<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i
 						class="bi bi-person-plus-fill"
 					></i></div><div class="signup-header rounded-3 text-center">
-					<h1 class="fw-bolder">New User SignUp</h1>
+					<h2 class="fw-bolder">User Profile</h2>
 					<p class="lead fw-normal text-muted mb-0">Please fill up the form to
-						access your community portal</p></div>
+						update your information</p></div>
 			</div>
-
+			{{user.first_name}}
+			{{user.last_name}}
+			{{user.address}}
+			{{user.city}}
+			{{user.state}}
+			{{user.zip}}
+			{{user.email}}
+			{{user.password}}
+			{{user.neighborhood_id}}
 			<div class="row gx-5 justify-content-center">
 				<div class="col-lg-8 col-xl-6">
 					<div class="invalid-feedback"></div>
@@ -163,4 +171,4 @@
 		</div>
 	</div>
 </section>
-<script src="/javascript/signup.js"></script>
+<script src="/javascript/userprofile.js"></script>
