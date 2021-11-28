@@ -29,13 +29,13 @@ router.get("/", (req, res) => {
 			"id",
 			"post_details",
 			"title",
-			"created_at",
-			[
-				sequelize.literal(
-					"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
-				),
-				"comment_count",
-			],
+		
+			// [
+			// 	sequelize.literal(
+			// 		"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+			// 	),
+			// 	"comment_count",
+			// ],
 		],
 		include: [
 			{
