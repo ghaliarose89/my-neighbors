@@ -62,7 +62,7 @@ User.init(
 			},
 		},
 
-		neighbourhood_id: {
+		neighborhood_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
@@ -85,7 +85,7 @@ User.init(
 		},
 
 		sequelize,
-		timestamps: false,
+		timestamps: true,
 		freezeTableName: true,
 		underscored: true,
 		modelName: "user",

@@ -2,7 +2,7 @@ const Comment = require("./Comment");
 const Event = require("./Event");
 const Post = require("./Post");
 const User = require("./User");
-const Neighbourhood = require("./Neighborhood");
+const Neighborhood = require("./Neighborhood");
 const LikedPosts = require ('./LikedPosts');
 
 //associations
@@ -22,12 +22,44 @@ Post.belongsToMany(User,
  { through:'LikedPosts',
   foreignKey:'post_id'
 })
+LikedPosts.belongsTo(User, {
+  foreignKey: 'user_id',
+  onDelete: 'SET NULL'
+});
+
+LikedPosts.belongsTo(Post, {
+  foreignKey: 'post_id',
+  onDelete: 'SET NULL'
+});
+
+Comment.belongsTo(User, {
+  foreignKey: 'user_id',
+  onDelete: 'SET NULL'
+});
+
+Comment.belongsTo(Post, {
+  foreignKey: 'post_id',
+  onDelete: 'SET NULL'
+});
+
+User.hasMany(Comment, {
+  foreignKey: 'user_id',
+  onDelete: 'SET NULL'
+});
+
+Post.hasMany(Comment, {
+  foreignKey: 'post_id'
+});
+
+User.belongsTo(Neighborhood,{
+  foreignKey:'neighborhood_id'
+});
+
+// 
 
 
 
 
 
 
-
-
-module.exports = { Comment, Event, Post, User, Neighbourhood , LikedPosts };
+module.exports = { Comment, Event, Post, User, Neighborhood , LikedPosts };

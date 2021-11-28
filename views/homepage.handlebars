@@ -1,3 +1,4 @@
+
 <!-- Header-->
 <div class="heroContainer">
 	<header class="hero py-5">
@@ -9,6 +10,8 @@
 							Neighborhood!
 						</h1>
 
+
+						</div>
 					</div>
 				</div>
 				<!-- backgeround image-->
@@ -50,10 +53,12 @@
 							</form>
 							<p class="login-card-footer-text">Don't have an account?
 								<a href="/signup" class="text-reset">Register here</a></p>
+
 						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</header>
 </div>
@@ -97,11 +102,45 @@
 						<p class="mb-0">Paragraph of text beneath the heading to explain the
 							heading. Here is just a bit more text.</p>
 					</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
-<section id="event-calendar">
-	<!-- Calendar -->
-</section>
+	</section>
+	<section id="event-calendar">
+		<!-- Calendar -->
+	</section>
+
+	{{!-- Posts --}}
+	
+	<section>
+		<div class="card bg-light">
+			
+				{{#each posts}}
+
+				<div class="d-flex mb-4">
+					
+					{{!-- <div class="flex-shrink-0"><img class="rounded-circle"
+							src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div> --}}
+				
+					<div class="ms-3">
+						Post {{id}}
+						<div class="fw-bold"><a href="single-post">{{title}}</a>    </div>  
+						{{post_details}} <br> By 
+						{{user.first_name}}<br> 
+						this post has{{comment_count}}  Comments<br>
+						On {{created_at}}<br>
+						
+					</div>	
+
+				</div>
+					<hr>
+				{{/each}}
+				
+			
+		</div>
+
+	</section>
+	
+</main>
+
