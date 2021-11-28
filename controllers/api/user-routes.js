@@ -1,7 +1,5 @@
-
-const router = require('express').Router();
-const { User, Post } = require('../../models');
-
+const router = require("express").Router();
+const { User, Post } = require("../../models");
 
 // get all users
 router.get("/", (req, res) => {
@@ -58,7 +56,7 @@ router.post("/", (req, res) => {
 		address: req.body.address,
 		city: req.body.city,
 		zip: req.body.zip,
-		neighbourhood_id: req.body.neighbourhood_id,
+		neighborhood_id: req.body.neighbourhood_id,
 	})
 		.then((dbUserData) => {
 			req.session.save(() => {
@@ -75,22 +73,22 @@ router.post("/", (req, res) => {
 });
 
 // login User
-router.post('/login', (req, res) => {
+router.post("/login", (req, res) => {
 	// expects {email: 'lernantino@gmail.com', password: 'password1234'}
 	User.findOne({
 		where: {
-			email: req.body.email
-		}
-	}).then(dbUserData => {
+			email: req.body.email,
+		},
+	}).then((dbUserData) => {
 		if (!dbUserData) {
-			res.status(400).json({ message: 'No user with that email address!' });
+			res.status(400).json({ message: "No user with that email address!" });
 			return;
 		}
 
 		const validPassword = dbUserData.checkPassword(req.body.password);
 
 		if (!validPassword) {
-			res.status(400).json({ message: 'Incorrect password!' });
+			res.status(400).json({ message: "Incorrect password!" });
 			return;
 		}
 
@@ -99,13 +97,13 @@ router.post('/login', (req, res) => {
 			req.session.first_name = dbUserData.first_name;
 			req.session.loggedIn = true;
 
-			res.json({ user: dbUserData, message: 'You are now logged in!' });
+			res.json({ user: dbUserData, message: "You are now logged in!" });
 		});
 	});
 });
 
-//loging out 
-router.post('/logout', (req, res) => {
+//loging out
+router.post("/logout", (req, res) => {
 	if (req.session.loggedIn) {
 		req.session.destroy(() => {
 			res.status(204).end();
@@ -115,48 +113,46 @@ router.post('/logout', (req, res) => {
 	}
 });
 //Updating user data
-router.put('/:id', (req, res) => {
+router.put("/:id", (req, res) => {
 	// expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
 
 	// pass in req.body instead to only update what's passed through
 	User.update(req.body, {
 		individualHooks: true,
 		where: {
-			id: req.params.id
-		}
+			id: req.params.id,
+		},
 	})
-		.then(dbUserData => {
+		.then((dbUserData) => {
 			if (!dbUserData) {
-				res.status(404).json({ message: 'No user found with this id' });
+				res.status(404).json({ message: "No user found with this id" });
 				return;
 			}
 			res.json(dbUserData);
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.log(err);
 			res.status(500).json(err);
 		});
 });
 //   Delete the user
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
 	User.destroy({
 		where: {
-			id: req.params.id
-		}
+			id: req.params.id,
+		},
 	})
-		.then(dbUserData => {
+		.then((dbUserData) => {
 			if (!dbUserData) {
-				res.status(404).json({ message: 'No user found with this id' });
+				res.status(404).json({ message: "No user found with this id" });
 				return;
 			}
 			res.json(dbUserData);
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.log(err);
 			res.status(500).json(err);
 		});
 });
-
-
 
 module.exports = router;
