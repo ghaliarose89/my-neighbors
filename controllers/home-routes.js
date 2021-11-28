@@ -72,12 +72,17 @@ router.get("/userprofile", (req, res) => {
 		where: {
 			id: req.session.user_id,
 		},
+		include: {
+			attributes: ["neighborhood_name"],
+			model: Neighborhood,
+		},
 	})
 		.then((dbUserData) => {
 			if (!dbUserData) {
 				res.status(404).json({ message: "No user found with this id" });
 				return;
 			}
+			console.log(dbUserData);
 			const user = dbUserData.get({ plain: true });
 			res.render("userprofile", { user });
 			// res.json(dbUserData);
