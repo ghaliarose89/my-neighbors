@@ -1,8 +1,9 @@
 let neighborhoods = [];
-
+let invalid_neighborhood_msg = "";
 const validateUser = (user) => {
-	var message = "";
+	invalid_neighborhood_msg = "";
 	var rv = true;
+	document.querySelector("#submitErrorMessage").classList.add("d-none");
 	if (user.first_name === "") {
 		console.log(":::here:::");
 		document.getElementById("first_name").style.background = "red";
@@ -52,6 +53,8 @@ const validateUser = (user) => {
 		if (neighborhood.zip1 != user.zip && neighborhood.zip2 != user.zip) {
 			console.log("both false " + neighborhood.zip1 + neighborhood.zip2);
 			document.getElementById("neighborhood_select").style.background = "red";
+			invalid_neighborhood_msg =
+				" Selected neighborhood and zipcode entered does not match.";
 			rv = false;
 		} else {
 			console.log("correct zip");
@@ -86,8 +89,11 @@ const signupFormHandler = async (event) => {
 	};
 
 	if (!validateUser(user)) {
-		document.querySelector(".invalid-feedback").innerHTML =
-			"Required fields are missing";
+		printErrorMsg(
+			"Required fields are missing." +
+				invalid_neighborhood_msg +
+				" Please try again."
+		);
 		return false;
 	}
 	const response = await fetch("/api/users", {
@@ -111,9 +117,16 @@ const signupFormHandler = async (event) => {
 		document.location.replace("/");
 	} else {
 		alert(response.statusText);
+		printErrorMsg(response.statusText);
 	}
 };
 
+function printErrorMsg(msg) {
+	let errormsgHolder = document.querySelector("#submitErrorMessage");
+	errormsgHolder.innerHTML = msg;
+	errormsgHolder.setAttribute("style", "font-weight:bold;color:red;");
+	errormsgHolder.classList.remove("d-none");
+}
 const loadNeighborhoodsData = async () => {
 	const response = await fetch("/api/neighborhoods");
 	if (response.ok) {
@@ -143,5 +156,10 @@ function changeBgColor() {
 document
 	.getElementById("submitButton")
 	.addEventListener("click", signupFormHandler);
-
+console.log(document.getElementById("CancelButton"));
+document.getElementById("CancelButton").onclick = function (event) {
+	event.preventDefault();
+	console.log("joo");
+	document.location = "/";
+};
 loadData();
