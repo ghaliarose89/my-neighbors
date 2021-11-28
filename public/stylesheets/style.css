@@ -63,7 +63,7 @@
   */
 
 	--ceruleon1: #4484ce;
-		--ceruleon2: #00303f;
+	--ceruleon2: #00303f;
 	--aluminium: #d9d9d9;
 	--primary-color: #4484ce;
 	--secondary-color: #d9d9d9;
@@ -107,6 +107,10 @@
 	font-weight: 300;
 	width: 100%;
 	/* color: var(--blueberry); */
+}
+
+#welcome-message {
+	color: var(--honey1);
 }
 .signup-header {
 	background-color: var(--honey1);
@@ -183,6 +187,7 @@
 	font-weight: 700;
 	color: var(--honey1);
 	font-size: 1.2rem;
+	display: inline;
 }
 @media (prefers-reduced-motion: no-preference) {
 	:root {

@@ -14,14 +14,17 @@
 						</div>
 					</div>
 				
-				<!-- backgeround image-->
+					{{! login-form }}
+			
 				<div class="col-xl-5 col-xxl-6 d-xl-block text-center">
-					<div class="col-md-7">
-						{{! login-form }}
-						<div class="card-body">
+					<div class="col-md-7">						
+						<div class="card-body loginDiv">
+											{{#if loggedIn}} 
+						{{else}}} 
 							<p class="lead fw-bold mb-4 login-card-description">Sign in to
 								view community posts and events</p>
 							{{! <p class="">Sign into your account</p> }}
+				 
 							<form action="#!">
 								<div class="form-group">
 									<label for="email" class="sr-only">Email</label>
@@ -53,17 +56,37 @@
 							</form>
 							<p class="login-card-footer-text">Don't have an account?
 								<a href="/signup" class="text-reset">Register here</a></p>
-
+	{{/if}}  
 						</div>
+					
 					</div>
 				</div>
+				
 			</div>
 
 		</div>
 	</header>
 </div>
-<section class="py-5" id="features">
+ {{#if loggedIn}} 
+<div class=" container px-5 mt-5 text-center" id="welcome-message">
+	 <div class="row">
+		 <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+				<h5 class ="lead fw-bolder">Welcome {{user_first_name}} !!</h5>
+		</div><div class="col-sm-4">
+			<div class="d-grid w-50">
+				<a class="btn btn-outline-primary" href="#!">User Profile</a>
+			</div>
+				 </div>
+
+</div>
+</div>
+{{else}}
+<div class=" container px-5 mt-5 text-center" id="welcome-message"><h5 class ="lead fw-bolder">Welcome Neighbor!! </h5></div>
+{{/if}} 
+<section class="py-3" id="features">
 	<div class="container px-5 my-5">
+		
 		<div class="row gx-5">
 			<div class="col-lg-4 mb-5 mb-lg-0">
 				<h2 class="fw-bolder mb-0">A better way to start building.</h2>
