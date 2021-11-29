@@ -1,4 +1,4 @@
-let neighborhoods = [];
+//let neighborhoods = [];
 let invalid_neighborhood_msg = "";
 const validateUser = (user) => {
 	invalid_neighborhood_msg = "";
@@ -127,26 +127,27 @@ function printErrorMsg(msg) {
 	errormsgHolder.setAttribute("style", "font-weight:bold;color:red;");
 	errormsgHolder.classList.remove("d-none");
 }
-const loadNeighborhoodsData = async () => {
-	const response = await fetch("/api/neighborhoods");
-	if (response.ok) {
-		const neighborhoods_data = response.json();
-		return neighborhoods_data;
-	} else return null;
-};
+// const loadNeighborhoodsData = async () => {
+// 	const response = await fetch("/api/neighborhoods");
+// 	if (response.ok) {
+// 		const neighborhoods_data = response.json();
+// 		return neighborhoods_data;
+// 	} else return null;
+// };
 const loadData = () => {
 	let allInputs = document.querySelectorAll(".form-control,.form-select");
 	for (let i = 0; i < allInputs.length; i++) {
+		//allInputs[i].value = ""
 		allInputs[i].addEventListener("focus", changeBgColor);
 	}
 	console.log(allInputs);
-	loadNeighborhoodsData()
-		.then((data) => {
-			neighborhoods = data;
-			console.log(neighborhoods);
-			return data;
-		})
-		.then((err) => {});
+	// 	loadNeighborhoodsData()
+	// 		.then((data) => {
+	// 			neighborhoods = data;
+	// 			console.log(neighborhoods);
+	// 			return data;
+	// 		})
+	// 		.then((err) => {});
 };
 
 function changeBgColor() {
