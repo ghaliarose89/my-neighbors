@@ -1,0 +1,61 @@
+<section>
+  <h2>Create New Post</h2>
+
+  <form class="new-post-form">
+    <div>
+      <label for="post-title">Title</label>
+      <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <label for="post-url">Post Details</label>
+      <textarea id="post-url" name="post-url"></textarea>
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
+<input type="hidden" id="user_id" value={{user_id}}>
+
+
+{{#if posts.length}}
+<section>
+  <h2>Your Posts</h2>
+  <ol>
+    {{#each posts}}
+    <div class="d-flex mb-4">
+
+      <div class="ms-3">
+        <input type="hidden" id="post_id" value={{id}}>
+        Post {{id}}
+        <div class="fw-bold">>{{title}} </div>
+        {{post_details}} <br> By
+        {{user.first_name}}<br>
+        this post has{{this.comment_count}} Comments<br>
+        On {{format_date created_at}}<br>
+        {{#if comments.length}}
+        {{#each comments}}
+        <div>
+
+          <li>
+            {{comment_text}} by {{user.first_name}}
+          </li>
+          <hr>
+
+        </div>
+
+        {{/each}}
+        {{/if}}
+      </div>
+    </div>
+    <div>
+      <button type="submit" id='addCommentBtn'>Add comment</button>
+      <button type="submit" id='editPostBtn'>Edit post</button>
+    </div>
+    <hr>
+
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+
+<script src="/javascript/add-post.js"></script>
