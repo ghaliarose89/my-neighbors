@@ -29,13 +29,14 @@ router.get("/", (req, res) => {
 			"id",
 			"post_details",
 			"title",
+      "created_at",
 		
-			// [
-			// 	sequelize.literal(
-			// 		"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
-			// 	),
-			// 	"comment_count",
-			// ],
+			[
+				sequelize.literal(
+					"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+				),
+				"comment_count",
+			],
 		],
 		include: [
 			{
@@ -43,18 +44,18 @@ router.get("/", (req, res) => {
 				attributes: ["id", "comment_text", "post_id", "user_id"],
 				include: {
 					model: User,
-					attributes: ["first_name"],
+					attributes: ["first_name","last_name"],
 				},
 			},
 			{
 				model: User,
-				attributes: ["first_name"],
+				attributes: ["first_name","last_name"],
 			},
 		],
 	})
 		.then((dbPostData) => {
 			const posts = dbPostData.map((post) => post.get({ plain: true }));
-			console.log(posts);
+			//console.log(posts);
 			res.render("homepage", {
 				posts,
 				loggedIn: req.session.loggedIn,
@@ -65,6 +66,29 @@ router.get("/", (req, res) => {
 			console.log(err);
 			res.status(500).json(err);
 		});
+
+    // Event.findAll({
+    //   attributes: [
+    //   	"event_title",
+    //   	"event_details",
+    //   	"event_start_date",
+    //     "event_end_date"
+    //   ]
+    // })
+  
+    //   .then((dbPostData) => {
+      
+    //     const events = dbPostData.map((event) => event.get({ plain: true }));
+    //     console.log(events);
+    //     res.render("homepage", {
+    //       events,
+        
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     res.status(500).json(err);
+    //   });
 });
 router.get("/userprofile", (req, res) => {
 	User.findOne({
@@ -82,7 +106,7 @@ router.get("/userprofile", (req, res) => {
 				res.status(404).json({ message: "No user found with this id" });
 				return;
 			}
-			console.log(dbUserData);
+			//console.log(dbUserData);
 			const user = dbUserData.get({ plain: true });
 			res.render("userprofile", { user });
 			// res.json(dbUserData);
@@ -92,4 +116,58 @@ router.get("/userprofile", (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+
+router.get('/post/:id', (req, res) => {
+  Post.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      "id",
+			"post_details",
+			"title",
+      "created_at",
+      [
+        	sequelize.literal(
+        		"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+        	),
+        	"comment_count",
+        ],
+    ],
+    include: [
+			{
+				model: Comment,
+				attributes: ["id", "comment_text", "post_id", "user_id"],
+				include: {
+					model: User,
+					attributes: ["first_name","last_name"],
+				},
+			},
+			{
+				model: User,
+				attributes: ["first_name","last_name"],
+			},
+		],
+  })
+    .then(dbPostData => {
+      if (!dbPostData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+
+      const post = dbPostData.get({ plain: true });
+      console.log(post)
+      res.render('single-post', {
+        post,
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
