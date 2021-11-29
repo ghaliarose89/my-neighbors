@@ -23,7 +23,7 @@ Event.init(
 			defaultValue: DataTypes.NOW,
 			get() {
 				return moment(this.getDataValue("event_start_date")).format(
-					"MM/DD/YYYY hh:mm:ss"
+					"MM/DD/YYYY hh:mm:ss A"
 				);
 			},
 		},
@@ -32,7 +32,7 @@ Event.init(
 			defaultValue: DataTypes.NOW,
 			get() {
 				return moment(this.getDataValue("event_end_date")).format(
-					"MM/DD/YYYY hh:mm:ss"
+					"MM/DD/YYYY hh:mm A"
 				);
 			},
 		},

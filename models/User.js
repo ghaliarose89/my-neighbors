@@ -53,6 +53,10 @@ User.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		state: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 
 		zip: {
 			type: DataTypes.INTEGER,
