@@ -130,6 +130,11 @@
 	font-size: 1.5rem;
 	background-color: var(--ceruleon);
 }
+
+.event-card span {
+	color: var(--honey1);
+}
+
 .login-card .card-body {
 	padding: 85px 60px 60px;
 }
