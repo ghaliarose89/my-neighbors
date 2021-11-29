@@ -1,4 +1,5 @@
 let neighborhoods = [];
+let events = [];
 const loadNeighborhoodsData = async () => {
 	const response = await fetch("/api/neighborhoods");
 	if (response.ok) {
@@ -13,4 +14,18 @@ loadNeighborhoodsData()
 		console.log(neighborhoods);
 		return data;
 	})
-	.then((err) => {});
+	.catch((err) => {});
+
+const loadEventsData = async () => {
+	const response = await fetch("/api/events");
+	return response.json();
+};
+
+loadEventsData()
+	.then((data) => {
+		//	console.log(data);
+		return data;
+	})
+	.catch((err) => {
+		console.log(err);
+	});
