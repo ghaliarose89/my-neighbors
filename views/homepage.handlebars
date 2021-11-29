@@ -5,11 +5,12 @@
 			<div class="row gx-5 align-items-center justify-content-center">
 				<div class="col-lg-8 col-xl-7 col-xxl-6">
 					<div class="my-5 text-center text-xl-start">
-						<h1 class="display-5 fw-bolder text-white mb-2">Welcome To The
+						<h1 class="display-5 fw-bolder text-white mb-2 " id ="welcome_msg_holder">Welcome To The
 							Neighborhood!
 						</h1>
 					</div>
 				</div>
+			
 				{{! login-form }}
 				<div class="col-xl-5 col-xxl-6 d-xl-block text-center">
 					<div class="col-md-7">
@@ -46,6 +47,7 @@
 	</header>
 </div>
 {{#if loggedIn}}
+<input type ="hidden" id ="neighborhood_id_hidden" value ={{neighborhood_id}}>
 <div class=" container px-5 mt-5 text-center" id="welcome-message">
 	<div class="row">
 		<div class="col-sm-4"></div>

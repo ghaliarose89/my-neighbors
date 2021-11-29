@@ -46,6 +46,7 @@ router.get("/:id", (req, res) => {
 		});
 });
 
+//NEW USER SIGNUP
 router.post("/", (req, res) => {
 	// expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
 	User.create({
@@ -55,13 +56,17 @@ router.post("/", (req, res) => {
 		password: req.body.password,
 		address: req.body.address,
 		city: req.body.city,
+		state: req.body.state,
 		zip: req.body.zip,
 		neighborhood_id: req.body.neighbourhood_id,
 	})
 		.then((dbUserData) => {
 			req.session.save(() => {
 				req.session.user_id = dbUserData.id;
-				req.session.username = dbUserData.username;
+				req.session.first_name = dbUserData.first_name;
+				//	req.session.username = dbUserData.username;
+				req.session.isAdmin = dbUserData.isAdmin;
+				req.session.neighborhood_id = dbUserData.neighborhood_id;
 				req.session.loggedIn = true;
 				res.json(dbUserData);
 			});
@@ -79,27 +84,33 @@ router.post("/login", (req, res) => {
 		where: {
 			email: req.body.email,
 		},
-	}).then((dbUserData) => {
-		if (!dbUserData) {
-			res.status(400).json({ message: "No user with that email address!" });
-			return;
-		}
+	})
+		.then((dbUserData) => {
+			if (!dbUserData) {
+				res.status(400).json({ message: "No user with that email address!" });
+				return;
+			}
 
-		const validPassword = dbUserData.checkPassword(req.body.password);
+			const validPassword = dbUserData.checkPassword(req.body.password);
 
-		if (!validPassword) {
-			res.status(400).json({ message: "Incorrect password!" });
-			return;
-		}
+			if (!validPassword) {
+				res.status(400).json({ message: "Incorrect password!" });
+				return;
+			}
 
-		req.session.save(() => {
-			req.session.user_id = dbUserData.id;
-			req.session.first_name = dbUserData.first_name;
-			req.session.loggedIn = true;
+			req.session.save(() => {
+				req.session.user_id = dbUserData.id;
+				req.session.first_name = dbUserData.first_name;
+				req.session.loggedIn = true;
+				req.session.isAdmin = dbUserData.isAdmin;
+				req.session.neighborhood_id = dbUserData.neighborhood_id;
 
-			res.json({ user: dbUserData, message: "You are now logged in!" });
+				res.json({ user: dbUserData, message: "You are now logged in!" });
+			});
+		})
+		.then((err) => {
+			console.log(err);
 		});
-	});
 });
 
 //loging out
