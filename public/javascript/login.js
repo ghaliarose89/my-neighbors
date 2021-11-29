@@ -108,7 +108,7 @@ function buildEventCards(events) {
 	for (let i = 0; i < events.length; i++) {
 		const evt = events[i];
 
-		let div1 = $("<div>").addClass("col mb-5 h-100");
+		let div1 = $("<div>").addClass("col mb-4 h-100 event-card");
 		let div2 = $("<div>").addClass(
 			"feature bg-primary bg-gradient text-white rounded-3 mb-3"
 		);

@@ -95,6 +95,11 @@
 	left: 0;
 	right: 0;
 }
+
+.feature {
+	border-radius: 5px;
+	border: 2px solid var(--honey1);
+}
 .heroContainer:before {
 	content: "";
 	background: var(--darkgray);
