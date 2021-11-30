@@ -61,36 +61,16 @@ router.get("/", (req, res) => {
 				loggedIn: req.session.loggedIn,
 				user_first_name: req.session.first_name,
 				neighborhood_id: req.session.neighborhood_id,
+				isAdmin: req.session.isAdmin,
 			});
 		})
 		.catch((err) => {
 			console.log(err);
 			res.status(500).json(err);
 		});
-
-	// Event.findAll({
-	//   attributes: [
-	//   	"event_title",
-	//   	"event_details",
-	//   	"event_start_date",
-	//     "event_end_date"
-	//   ]
-	// })
-
-	//   .then((dbPostData) => {
-
-	//     const events = dbPostData.map((event) => event.get({ plain: true }));
-	//     console.log(events);
-	//     res.render("homepage", {
-	//       events,
-
-	//     });
-	//   })
-	//   .catch((err) => {
-	//     console.log(err);
-	//     res.status(500).json(err);
-	//   });
 });
+
+//USER PROFILE
 router.get("/userprofile", (req, res) => {
 	User.findOne({
 		attributes: { exclude: ["password"] },
@@ -118,6 +98,7 @@ router.get("/userprofile", (req, res) => {
 		});
 });
 
+//GET POSTS
 router.get("/post/:id", (req, res) => {
 	Post.findOne({
 		where: {
@@ -168,6 +149,12 @@ router.get("/post/:id", (req, res) => {
 			console.log(err);
 			res.status(500).json(err);
 		});
+});
+
+
+//EVENTS MANAGEMENT
+router.get("/event-manager", (req, res) => {
+	res.render("event-manager");
 });
 
 router.get('/createPost',(req, res) => {
