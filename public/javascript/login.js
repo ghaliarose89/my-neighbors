@@ -28,7 +28,7 @@ async function loginForm(event) {
 		if (response.ok) {
 			console.log("ok");
 			document.location.replace("/");
-		} else alert(response.status);
+		} else document.querySelector("#errMsg").innerHTML = "Wrong email OR password";
 	}
 }
 
@@ -45,12 +45,10 @@ async function logout() {
 	} else {
 		alert(response.statusText);
 	}
-}
+};
+if (document.getElementById("login"))
+	 document.querySelector("#login").addEventListener("click", loginForm);
 
-if (document.querySelector("#login")) {
-	let loginBtn = document.querySelector("#login");
-	loginBtn.addEventListener("click", loginForm);
-}
 if (document.getElementById("logout")) {
 	document.getElementById("logout").addEventListener("click", logout);
 	// document
