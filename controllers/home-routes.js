@@ -26,8 +26,8 @@ router.get("/", (req, res) => {
 	console.log("======================");
 	Post.findAll({
 		order: [
-            ["created_at", "DESC"],
-        ],
+			["created_at", "DESC"]
+		],
 		attributes: [
 			"id",
 			"post_details",
@@ -35,7 +35,7 @@ router.get("/", (req, res) => {
 			"created_at",
 
 			[
-				sequelize.literal("(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"),"comment_count",
+				sequelize.literal("(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"), "comment_count",
 			],
 		],
 		include: [
@@ -170,18 +170,18 @@ router.get("/event-manager", (req, res) => {
 });
 
 
-router.get('/createPost',(req, res) => {
-  Post.findAll({
-    where: {
-      // use the ID from the session
-      user_id: req.session.user_id
-    },
-    attributes: [
-      "id",
+router.get('/createPost', (req, res) => {
+	Post.findAll({
+		where: {
+			// use the ID from the session
+			user_id: req.session.user_id
+		},
+		attributes: [
+			"id",
 			"post_details",
 			"title",
 			"created_at",
-		
+
 			[
 				sequelize.literal(
 					"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
@@ -253,47 +253,47 @@ router.get("/editPost/:id", (req, res) => {
 		],
 	})
 
-	  .then(dbPostData => {
-		if (!dbPostData) {
-		  res.status(404).json({ message: 'No post found with this id' });
-		  return;
-		}
-  
-		const post = dbPostData.get({ plain: true });
-		console.log(post)
-		res.render('edit-post', {
-		  post,
-		  loggedIn: req.session.loggedIn,
-		  user_id: req.session.user_id
-		});
-	  })
-	  .catch(err => {
-		console.log(err);
-		res.status(500).json(err);
-	  });
-  });
-  router.get('/login', (req, res) => {
-	if (req.session.loggedIn) {
-	  res.redirect('/');
-	  return;
-	}
-  
-	res.render('login');
-
-		.then((dbPostData) => {
+		.then(dbPostData => {
 			if (!dbPostData) {
-				res.status(404).json({ message: "No post found with this id" });
+				res.status(404).json({ message: 'No post found with this id' });
 				return;
 			}
 
 			const post = dbPostData.get({ plain: true });
-			console.log(post);
-			res.render("edit-post", {
+			console.log(post)
+			res.render('edit-post', {
 				post,
 				loggedIn: req.session.loggedIn,
-				user_id: req.session.user_id,
+				user_id: req.session.user_id
 			});
 		})
+		.catch(err => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
+router.get('/login', (req, res) => {
+	if (req.session.loggedIn) {
+		res.redirect('/');
+		return;
+	}
+
+	res.render('login')
+
+		.then((dbPostData) => {
+		if (!dbPostData) {
+			res.status(404).json({ message: "No post found with this id" });
+			return;
+		}
+
+		const post = dbPostData.get({ plain: true });
+		console.log(post);
+		res.render("edit-post", {
+			post,
+			loggedIn: req.session.loggedIn,
+			user_id: req.session.user_id,
+		});
+	})
 		.catch((err) => {
 			console.log(err);
 			res.status(500).json(err);
