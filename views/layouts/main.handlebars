@@ -29,6 +29,7 @@
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 
+
 	<body class="d-flex flex-column h-100">
 		<main class="flex-shrink-0">
 			<!-- Navigation-->
@@ -51,7 +52,9 @@
 									class="nav-link"
 									href="about.handlebars"
 								>About</a></li>
+                {{#unless loggedIn}}
 							<li class="nav-item"><a class="nav-link" href="/signup">New User</a></li>
+              {{else}} <li class="nav-item"><a class="nav-link" href="/createPost">Create a Post</a></li>{{/unless}}
 							{{#if isAdmin}}
 								<li class="nav-item dropdown">
 									<a
@@ -87,28 +90,27 @@
 										href="#"
 									>Log Out</a></li>
 							{{/if}}
+              {{#if loggedIn}}<li class="nav-item" ><a class="nav-link" href="/userprofile">Welcome {{user_first_name}}!!</a> </li>{{/if}}
 
-						</ul>
-					</div>
+
+					</ul>
 				</div>
-			</nav>
-			{{{body}}}
-			<footer class="bg-dark py-4 mt-auto">
-				<div class="container px-5">
-					<div
-						class="row align-items-center justify-content-between flex-column flex-sm-row"
-					>
-						<div class="col-auto">
-							<div class="small m-0 text-white">Copyright &copy; Your Website
-								2021</div>
-						</div>
-						<div class="col-auto">
-							<a class="link-light small" href="#!">Privacy</a>
-							<span class="text-white mx-1">&middot;</span>
-							<a class="link-light small" href="#!">Terms</a>
-							<span class="text-white mx-1">&middot;</span>
-							<a class="link-light small" href="#!">Contact Us</a>
-						</div>
+			</div>
+		</nav>
+		{{{body}}}
+		<footer class="bg-dark py-4 mt-auto">
+			<div class="container px-5">
+				<div class="row align-items-center justify-content-between flex-column flex-sm-row">
+					<div class="col-auto">
+						<div class="small m-0 text-white">Copyright &copy; Your Website
+							2021</div>
+					</div>
+					<div class="col-auto">
+						<a class="link-light small" href="#!">Privacy</a>
+						<span class="text-white mx-1">&middot;</span>
+						<a class="link-light small" href="#!">Terms</a>
+						<span class="text-white mx-1">&middot;</span>
+						<a class="link-light small" href="#!">Contact Us</a>
 					</div>
 				</div>
 			</footer>

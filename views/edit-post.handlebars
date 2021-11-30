@@ -1,0 +1,48 @@
+<article>
+  <a href="/createPost"> &larr; Back to Your Posts</a>
+  <h2>
+    Edit Post
+  </h2>
+  <form class="edit-post-form">
+    <div> Post title
+      <input name="post-title" type="text" value="{{post.title}}" />
+      
+    </div>
+    <div>
+       
+      <div>
+        <label for="post-details">Post Details</label>
+     <textarea id="post-details" name="post-details" >{{post.post_details}}</textarea>
+     </br>
+     by you on {{format_date post.created_at}}
+  </div>
+
+
+    </div>
+    <button type="submit">Save post</button>
+    <button type="button" class="delete-post-btn">Delete post</button>
+  </form>
+</article>
+
+<form class="comment-form">
+  
+  <div>
+    <button type="submit">add comment</button>
+  </div>
+</form>
+
+{{#if comments.length}}
+        {{#each comments}}
+        <div>
+
+          <li>
+            {{comment_text}} by {{user.first_name}}
+          </li>
+          <hr>
+        </div>
+        {{/each}}
+        {{/if}}
+
+<script src="/javascript/edit-post.js"></script>
+{{!-- <script src="/javascript/delete-post.js"></script>
+<script src="/javascript/comment.js"></script> --}}
