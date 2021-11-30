@@ -2,7 +2,7 @@ async function newFormHandler(event) {
   event.preventDefault();
 
   const title = document.querySelector('input[name="post-title"]').value;
-  const post_details = document.querySelector('input[name="post-url"]').value;
+  const post_details = document.querySelector('#post-url').value;
   const user_id = document.querySelector('#user_id').value;
   const response = await fetch(`/api/posts`, {
     method: 'POST',
@@ -26,18 +26,28 @@ async function newFormHandler(event) {
 
 
 
-async function addCommentBtn(event) {
-  event.preventDefault();
-  const post_id = document.querySelector('#post_id').value;
+async function addCommentBtn(thisBtn) {
+  const post_id = thisBtn.getAttribute("data-post-id")//document.querySelector('#post_id').value;
   document.location.replace(`/post/${post_id}`);
 };
-async function editPosttBtn(event) {
-  event.preventDefault();
-  const post_id = document.querySelector('#post_id').value;
+
+async function editPosttBtn(thisBtn) {
+  const post_id = thisBtn.getAttribute("data-post-id")
   document.location.replace(`/editPost/${post_id}`);
 };
 
+// async function deletePosttBtn(event) {
+//   event.preventDefault();
+//   const post_id = document.querySelector('#post_id').value;
 
-document.querySelector('#addCommentBtn').addEventListener('click', addCommentBtn)
-document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
-document.querySelector('#editPostBtn').addEventListener('click', editPosttBtn)
+//   const response = await fetch(`/api/comments/${post_id}`, {
+//     method: 'DELETE'
+//   });
+//   const response = await fetch(`/api/posts/${post_id}`, {
+//     method: 'DELETE'
+//   });
+
+//   document.location.replace(`/`);
+// };
+
+

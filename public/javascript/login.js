@@ -28,7 +28,7 @@ async function loginForm(event) {
 		if (response.ok) {
 			console.log("ok");
 			document.location.replace("/");
-		} else alert(response.status);
+		} else document.querySelector("#errMsg").innerHTML = "Wrong email OR password";
 	}
 }
 
