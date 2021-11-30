@@ -56,6 +56,54 @@ router.get("/prev", (req, res) => {
 		});
 });
 
+router.post("/daterange", (req, res) => {
+	console.log("@@@@@@@@@@@@@@@@");
+	console.log(req.body);
+	Event.findAll({
+		where: {
+			[Op.or]: [
+				{
+					event_start_date: {
+						[Op.between]: [req.body.event_start_date, req.body.event_end_date],
+					},
+				},
+				{
+					event_end_date: {
+						[Op.between]: [req.body.event_start_date, req.body.event_end_date],
+					},
+				},
+			],
+			// 	[Op.or]: [
+			// 		{
+			// 			event_end_date: {
+			// 				[Op.gt]: req.body.event_start_date,
+			// 			},
+			// 		},
+			// 		{
+			// 			event_start_date: {
+			// 				[Op.lt]: req.body.event_end_date,
+			// 			},
+			// 		},
+			// 	],
+			// },
+			// where: {
+			// 	event_end_date: {
+			// 		[Op.lt]: req.body.event_end_date,
+			// 	},
+			// 	event_start_date: {
+			// 		[Op.gt]: req.body.event_start_date,
+			// 	},
+		},
+	})
+		.then((dbResult) => {
+			res.json(dbResult);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
+
 // /api/events/3
 router.get("/:id", (req, res) => {
 	Event.findOne({
@@ -79,6 +127,7 @@ router.get("/:id", (req, res) => {
 //POST create new event
 
 router.post("/", (req, res) => {
+	console.log(req.body);
 	Event.create({
 		event_title: req.body.event_title,
 		event_details: req.body.event_details,

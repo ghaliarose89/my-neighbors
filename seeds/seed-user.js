@@ -12,6 +12,7 @@ const userData = [
 		state: "TX",
 		zip: 77012,
 		neighborhood_id: 1,
+		isAdmin: 0,
 	},
 	{
 		first_name: "misha",
@@ -23,6 +24,7 @@ const userData = [
 		state: "TX",
 		zip: 77012,
 		neighborhood_id: 1,
+		isAdmin: 0,
 	},
 	{
 		first_name: "abigail",
@@ -34,6 +36,7 @@ const userData = [
 		state: "TX",
 		zip: 77012,
 		neighborhood_id: 1,
+		isAdmin: 0,
 	},
 	{
 		first_name: "Jacob",
@@ -45,6 +48,7 @@ const userData = [
 		state: "TX",
 		zip: 77001,
 		neighborhood_id: 2,
+		isAdmin: 0,
 	},
 	{
 		first_name: "Cindy",
@@ -56,6 +60,7 @@ const userData = [
 		state: "TX",
 		zip: 77001,
 		neighborhood_id: 2,
+		isAdmin: 0,
 	},
 ];
 

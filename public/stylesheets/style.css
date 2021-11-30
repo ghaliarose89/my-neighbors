@@ -121,6 +121,14 @@
 	background-color: var(--honey1);
 	color: white;
 }
+
+.event-mgr-header {
+	color: var(--honey1);
+
+	font-weight: 800;
+	font-size: 1.2rem;
+}
+
 .feature {
 	display: inline-flex;
 	align-items: center;
