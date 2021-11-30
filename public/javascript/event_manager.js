@@ -42,17 +42,9 @@ function viewEvents(event) {
 		return false;
 	}
 	getEventsByDateRange(from_date_seq, to_date_seq);
-	//make fetch request
-	// getEventsByDateRange(from_date_seq, to_date_seq)
-	// 	.then((data) => {
-	// 		console.log(data);
-	// 		buildEventsSection(data);
-	// 	})
-	// 	.catch((err) => {
-	// 		console.log(err);
-	// 	});
 }
 function buildEventsSection(events) {
+	$("#events-holder").empty();
 	var bulletColors = ["#dcae1d", "#007bff", "#6f42c1"];
 	for (let i = 0; i < events.length; i++) {
 		let evt = events[i];
@@ -89,6 +81,7 @@ function buildEventsSection(events) {
 }
 
 function eventformSubmitHandler() {
+	$("#event_submit_error").html("");
 	let event_title = $("#event_title").val().trim();
 	let event_details = $("#event_details").val().trim();
 	console.log(event_details, event_title);
@@ -113,16 +106,18 @@ function eventformSubmitHandler() {
 	//	alert(_event_end_date);
 	let event_end_date_seq = _event_end_date.format(format1);
 	alert(event_end_date_seq);
+
 	if (
 		!validateEventData(
 			event_title,
 			event_details,
-			event_start_date_seq,
-			event_end_date_seq
+			_event_start_date,
+			_event_end_date
 		)
 	) {
 		$("#event_submit_error").addClass("text-danger fw-bold");
 		$("#event_submit_error").html("Please correct the errors.");
+
 		return false;
 	}
 	fetch("/api/events", {
@@ -146,26 +141,45 @@ function eventformSubmitHandler() {
 function validateEventData(
 	event_title,
 	event_details,
-	event_start_date_seq,
-	event_end_date_seq
+	event_start_date,
+	event_end_date
 ) {
 	let rv = true;
-	if (event_title === "") {
-		$("#event_title").style.background = "red";
+	if ($("#event_end_time").val() == "") {
+		$("#event_end_time").addClass("bg-danger fw-bold");
+		alert("Please check time");
+		rv = false;
+	}
+	if ($("#event_start_time").val() == "") {
+		$("#event_start_time").addClass("bg-danger fw-bold");
+		alert("Please check time");
+		rv = false;
+	}
+	if (event_title == "") {
+		$("#event_title").addClass("bg-danger fw-bold");
 		rv = false;
 	}
 	if (event_details == "") {
-		$("#event_details").style.background = "red";
+		$("#event_details").addClass("bg-danger fw-bold");
 		rv = false;
 	}
-	if (moment(event_start_date_seq).isBefore(event_end_date_seq)) {
-		$("#event_start_date").style.background = "red";
-		$("#event_end_date").style.background = "red";
+	if (event_end_date.isBefore(event_start_date)) {
+		$("#event_start_dt").style.background = "red";
+		$("#event_end_dt").style.background = "red";
+		alert("dates are ivalid");
 		rv = false;
 	}
 	return rv;
 }
-// window.onload = function () {
+
+//allInputs[i].value = ""
+
+function changeBgColor(box) {
+	console.log(box);
+	console.log();
+	//	this.style.backgroundColor = "white";
+	box.classList.remove("bg-danger", "fw-bold");
+}
 $(document).ready(function () {
 	$("#from_date").datepicker({
 		duration: "fast",
@@ -201,6 +215,7 @@ $(document).ready(function () {
 	console.log($("#viewEventsButton"));
 	$("#viewEventsButton").on("click", viewEvents);
 	$("#event_submit").on("click", eventformSubmitHandler);
+
 	viewEvents();
 });
 // };
