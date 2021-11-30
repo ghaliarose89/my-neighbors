@@ -1,4 +1,147 @@
 //let neighborhoods = [];
+
+//--------------------------------------------------------------------
+function validateUserAddress(address, city, state, zip) {
+	// address = "7904 Capitol St";
+	// city = "houston";
+	// state = "TX";
+	// zip = "77012";
+
+	return fetch("/api/users/smartystreets", {
+		method: "POST",
+		body: JSON.stringify({ address, city, state, zip }),
+		headers: { "Content-Type": "application/json" },
+	})
+		.then((result) => {
+			return result.json();
+		})
+		.then((data) => {
+			console.log("1" + data.ssresult);
+			return data;
+		});
+}
+
+function insertData() {
+	const first_name = document.getElementById("first_name").value;
+	const last_name = document.getElementById("last_name").value;
+	const address = document.getElementById("address").value;
+	const city = document.getElementById("city").value;
+	const state = document.getElementById("state").value;
+	const zip = document.getElementById("zip").value;
+	const email = document.getElementById("email").value;
+	const password = document.getElementById("password").value;
+	const neighborhood = document.getElementById("neighborhood_select").value;
+	return fetch("/api/users", {
+		method: "POST",
+		body: JSON.stringify({
+			first_name,
+			last_name,
+			address,
+			city,
+			state,
+			zip,
+			email,
+			password,
+			neighbourhood_id: 1,
+			is_admin: 1,
+		}),
+		headers: { "Content-Type": "application/json" },
+	});
+}
+
+const signupFormHandler = async (event) => {
+	event.preventDefault();
+	const first_name = document.getElementById("first_name").value;
+	const last_name = document.getElementById("last_name").value;
+	const address = document.getElementById("address").value;
+	const city = document.getElementById("city").value;
+	const state = document.getElementById("state").value;
+	const zip = document.getElementById("zip").value;
+	const email = document.getElementById("email").value;
+	const password = document.getElementById("password").value;
+	const neighborhood = document.getElementById("neighborhood_select").value;
+
+	const user = {
+		first_name,
+		last_name,
+		address,
+		city,
+		state,
+		zip,
+		email,
+		password,
+		neighborhood,
+	};
+
+	if (!validateUser(user)) {
+		printErrorMsg(
+			"Required fields are missing." +
+				invalid_neighborhood_msg +
+				" Please try again."
+		);
+		return false;
+	}
+
+	validateUserAddress(address, city, state, zip)
+		.then((data) => {
+			console.log("2", data.ssresult);
+			if (data.ssresult) {
+				return insertData();
+			} else return null;
+		})
+		.then((data) => {
+			if (!data) {
+				//	alert(response.statusText);
+				printErrorMsg("Smarty Street Address Verification failed");
+			} else {
+				//smarty streets successful
+				if (data.ok) {
+					console.log(data);
+					console.log("success");
+					document.location.replace("/");
+				} else {
+					alert(data.statusText);
+					printErrorMsg(data.statusText);
+				}
+			}
+		});
+
+	// if (!validateUser(user)) {
+	// 	printErrorMsg(
+	// 		"Required fields are missing." +
+	// 			invalid_neighborhood_msg +
+	// 			" Please try again."
+	// 	);
+	// 	return false;
+	// }
+
+	// const response = await fetch("/api/users", {
+	// 	method: "POST",
+	// 	body: JSON.stringify({
+	// 		first_name,
+	// 		last_name,
+	// 		address,
+	// 		city,
+	// 		state,
+	// 		zip,
+	// 		email,
+	// 		password,
+	// 		neighbourhood_id: 1,
+	// 		is_admin: 1,
+	// 	}),
+	// 	headers: { "Content-Type": "application/json" },
+	// });
+	// if (response.ok) {
+	// 	console.log("success");
+	// 	document.location.replace("/");
+	// } else {
+	// 	alert(response.statusText);
+	// 	printErrorMsg(response.statusText);
+	// }
+};
+
+//-=-----------------------------------------------------------------------
+
 let invalid_neighborhood_msg = "";
 const validateUser = (user) => {
 	invalid_neighborhood_msg = "";
@@ -64,62 +207,63 @@ const validateUser = (user) => {
 	return rv;
 };
 
-const signupFormHandler = async (event) => {
-	event.preventDefault();
-	const first_name = document.getElementById("first_name").value;
-	const last_name = document.getElementById("last_name").value;
-	const address = document.getElementById("address").value;
-	const city = document.getElementById("city").value;
-	const state = document.getElementById("state").value;
-	const zip = document.getElementById("zip").value;
-	const email = document.getElementById("email").value;
-	const password = document.getElementById("password").value;
-	const neighborhood = document.getElementById("neighborhood_select").value;
+//DONOT TOUCH
+// const signupFormHandler = async (event) => {
+// 	event.preventDefault();
+// 	const first_name = document.getElementById("first_name").value;
+// 	const last_name = document.getElementById("last_name").value;
+// 	const address = document.getElementById("address").value;
+// 	const city = document.getElementById("city").value;
+// 	const state = document.getElementById("state").value;
+// 	const zip = document.getElementById("zip").value;
+// 	const email = document.getElementById("email").value;
+// 	const password = document.getElementById("password").value;
+// 	const neighborhood = document.getElementById("neighborhood_select").value;
 
-	const user = {
-		first_name,
-		last_name,
-		address,
-		city,
-		state,
-		zip,
-		email,
-		password,
-		neighborhood,
-	};
+// 	const user = {
+// 		first_name,
+// 		last_name,
+// 		address,
+// 		city,
+// 		state,
+// 		zip,
+// 		email,
+// 		password,
+// 		neighborhood,
+// 	};
 
-	if (!validateUser(user)) {
-		printErrorMsg(
-			"Required fields are missing." +
-				invalid_neighborhood_msg +
-				" Please try again."
-		);
-		return false;
-	}
-	const response = await fetch("/api/users", {
-		method: "POST",
-		body: JSON.stringify({
-			first_name,
-			last_name,
-			address,
-			city,
-			state,
-			zip,
-			email,
-			password,
-			neighbourhood_id: 1,
-			is_admin: 1,
-		}),
-		headers: { "Content-Type": "application/json" },
-	});
-	if (response.ok) {
-		console.log("success");
-		document.location.replace("/");
-	} else {
-		alert(response.statusText);
-		printErrorMsg(response.statusText);
-	}
-};
+// 	if (!validateUser(user)) {
+// 		printErrorMsg(
+// 			"Required fields are missing." +
+// 				invalid_neighborhood_msg +
+// 				" Please try again."
+// 		);
+// 		return false;
+// 	}
+// 	const response = await fetch("/api/users", {
+// 		method: "POST",
+// 		body: JSON.stringify({
+// 			first_name,
+// 			last_name,
+// 			address,
+// 			city,
+// 			state,
+// 			zip,
+// 			email,
+// 			password,
+// 			neighbourhood_id: 1,
+// 			is_admin: 1,
+// 		}),
+// 		headers: { "Content-Type": "application/json" },
+// 	});
+// 	if (response.ok) {
+// 		console.log("success");
+// 		document.location.replace("/");
+// 	} else {
+// 		alert(response.statusText);
+// 		printErrorMsg(response.statusText);
+// 	}
+// };
 
 function printErrorMsg(msg) {
 	let errormsgHolder = document.querySelector("#submitErrorMessage");
