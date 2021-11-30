@@ -34,9 +34,9 @@ function viewEvents(event) {
 	let to_date_seq = _to_date.format(format1);
 	console.log(to_date_seq);
 	if (moment(from_date_seq).isBefore(to_date_seq)) {
-		alert("dates are correct");
+		//	alert("dates are correct");
 	} else {
-		alert("wrong dates");
+		//	alert("wrong dates");
 		$("#view_event_error").html("Please check the dates");
 		$("#view_event_error").addClass("text-danger fw-bold");
 		return false;
@@ -49,7 +49,7 @@ function buildEventsSection(events) {
 	for (let i = 0; i < events.length; i++) {
 		let evt = events[i];
 		let j = i % 3;
-		console.log(evt);
+		//	console.log(evt);
 		let div1 = $("<div>").addClass("d-flex text-muted pt-3");
 		let svg = `	<svg class="bd-placeholder-img flex-shrink-0 me-2 rounded"
 					width="32"
@@ -73,10 +73,30 @@ function buildEventsSection(events) {
 		let p1 = $("<p>").addClass("pb-3 mb-0 small lh-sm border-bottom");
 		let p1html = `<strong class=d-block text-gray-dark">${evt.event_title}</strong>
 	${evt.event_details}<br>
-	${evt.event_start_date} - ${evt.event_end_date}`;
+	${evt.event_start_date} - ${evt.event_end_date} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
 		p1.html(p1html);
 		div1.append(p1);
+		let btn = $("<button>").addClass("btn btn-secondary btn-sm h-2 deletebtn ");
+		btn.attr("id", "deleteEvent" + evt.id);
+		btn.attr("data-id", evt.id);
+		btn.html("Delete");
+		//	console.log(btn);
+		p1.append(btn);
 		$("#events-holder").append(div1);
+	}
+	console.log("here r deletes");
+	$(".deletebtn").on("click", function () {
+		deleteEvent($(this).attr("data-id"));
+	});
+}
+
+async function deleteEvent(event_id) {
+	let response = await fetch("/api/events/" + event_id, {
+		method: "DELETE",
+	});
+	if (response.ok) {
+		console.log("successfully deleted");
+		viewEvents();
 	}
 }
 
@@ -94,7 +114,7 @@ function eventformSubmitHandler() {
 	console.log(_event_start_date);
 	//	alert(_event_start_date);
 	let event_start_date_seq = _event_start_date.format(format1);
-	alert(event_start_date_seq);
+	//alert(event_start_date_seq);
 
 	let event_end_date = $("#event_end_dt").val();
 	let event_end_time = $("#event_end_time").val();
@@ -105,7 +125,7 @@ function eventformSubmitHandler() {
 	console.log(_event_end_date);
 	//	alert(_event_end_date);
 	let event_end_date_seq = _event_end_date.format(format1);
-	alert(event_end_date_seq);
+	//	alert(event_end_date_seq);
 
 	if (
 		!validateEventData(
@@ -147,12 +167,12 @@ function validateEventData(
 	let rv = true;
 	if ($("#event_end_time").val() == "") {
 		$("#event_end_time").addClass("bg-danger fw-bold");
-		alert("Please check time");
+		//	alert("Please check time");
 		rv = false;
 	}
 	if ($("#event_start_time").val() == "") {
 		$("#event_start_time").addClass("bg-danger fw-bold");
-		alert("Please check time");
+		//	alert("Please check time");
 		rv = false;
 	}
 	if (event_title == "") {
@@ -166,7 +186,7 @@ function validateEventData(
 	if (event_end_date.isBefore(event_start_date)) {
 		$("#event_start_dt").style.background = "red";
 		$("#event_end_dt").style.background = "red";
-		alert("dates are ivalid");
+		//	alert("dates are ivalid");
 		rv = false;
 	}
 	return rv;

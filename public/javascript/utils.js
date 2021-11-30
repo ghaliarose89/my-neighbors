@@ -17,7 +17,7 @@ loadNeighborhoodsData()
 	.catch((err) => {});
 
 const loadEventsData = async () => {
-	const response = await fetch("/api/events");
+	const response = await fetch("/api/events/future");
 	return response.json();
 };
 
