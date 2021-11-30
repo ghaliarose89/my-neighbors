@@ -57,6 +57,7 @@ if (document.getElementById("logout")) {
 }
 window.onload = function () {
 	//GET NEIGHBORHOODS
+
 	let neighborhoods = [];
 	loadNeighborhoodsData()
 		.then((data) => {

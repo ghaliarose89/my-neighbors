@@ -74,6 +74,11 @@ User.init(
 				key: "id",
 			},
 		},
+		isAdmin: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: 0,
+		},
 	},
 	{
 		hooks: {

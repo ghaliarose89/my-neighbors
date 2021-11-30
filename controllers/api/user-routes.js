@@ -59,6 +59,7 @@ router.post("/", (req, res) => {
 		state: req.body.state,
 		zip: req.body.zip,
 		neighborhood_id: req.body.neighbourhood_id,
+		isAdmin: req.body.isAdmin,
 	})
 		.then((dbUserData) => {
 			req.session.save(() => {

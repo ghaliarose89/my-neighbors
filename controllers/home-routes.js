@@ -58,6 +58,7 @@ router.get("/", (req, res) => {
 				loggedIn: req.session.loggedIn,
 				user_first_name: req.session.first_name,
 				neighborhood_id: req.session.neighborhood_id,
+				isAdmin: req.session.isAdmin,
 			});
 		})
 		.catch((err) => {
@@ -65,7 +66,12 @@ router.get("/", (req, res) => {
 			res.status(500).json(err);
 		});
 
+
 });
+
+
+
+//USER PROFILE
 
 router.get("/userprofile", (req, res) => {
 	User.findOne({
@@ -94,7 +100,10 @@ router.get("/userprofile", (req, res) => {
 		});
 });
 
+
 //getting single post
+
+
 router.get("/post/:id", (req, res) => {
 	Post.findOne({
 		where: {
@@ -145,6 +154,14 @@ router.get("/post/:id", (req, res) => {
 			console.log(err);
 			res.status(500).json(err);
 		});
+});
+
+
+
+
+//EVENTS MANAGEMENT
+router.get("/event-manager", (req, res) => {
+	res.render("event-manager");
 });
 
 // creating post
