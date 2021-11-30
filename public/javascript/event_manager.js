@@ -26,13 +26,21 @@ function viewEvents(event) {
 	console.log($("#to_date").val());
 	let from_date = $("#from_date").val();
 	let to_date = $("#to_date").val();
-
+	$("#view_event_error").html("");
 	let _from_date = moment(from_date, dtpickerFormat);
 	let _to_date = moment(to_date, dtpickerFormat);
 
 	let from_date_seq = _from_date.format(format1);
 	let to_date_seq = _to_date.format(format1);
 	console.log(to_date_seq);
+	if (moment(from_date_seq).isBefore(to_date_seq)) {
+		alert("dates are correct");
+	} else {
+		alert("wrong dates");
+		$("#view_event_error").html("Please check the dates");
+		$("#view_event_error").addClass("text-danger fw-bold");
+		return false;
+	}
 	getEventsByDateRange(from_date_seq, to_date_seq);
 	//make fetch request
 	// getEventsByDateRange(from_date_seq, to_date_seq)
@@ -81,8 +89,8 @@ function buildEventsSection(events) {
 }
 
 function eventformSubmitHandler() {
-	let event_title = $("#event_title").val();
-	let event_details = $("#event_details").val();
+	let event_title = $("#event_title").val().trim();
+	let event_details = $("#event_details").val().trim();
 	console.log(event_details, event_title);
 	let event_start_date = $("#event_start_dt").val();
 	let event_start_time = $("#event_start_time").val();
@@ -105,7 +113,18 @@ function eventformSubmitHandler() {
 	//	alert(_event_end_date);
 	let event_end_date_seq = _event_end_date.format(format1);
 	alert(event_end_date_seq);
-
+	if (
+		!validateEventData(
+			event_title,
+			event_details,
+			event_start_date_seq,
+			event_end_date_seq
+		)
+	) {
+		$("#event_submit_error").addClass("text-danger fw-bold");
+		$("#event_submit_error").html("Please correct the errors.");
+		return false;
+	}
 	fetch("/api/events", {
 		method: "POST",
 		body: JSON.stringify({
@@ -124,7 +143,28 @@ function eventformSubmitHandler() {
 			console.log(err);
 		});
 }
-
+function validateEventData(
+	event_title,
+	event_details,
+	event_start_date_seq,
+	event_end_date_seq
+) {
+	let rv = true;
+	if (event_title === "") {
+		$("#event_title").style.background = "red";
+		rv = false;
+	}
+	if (event_details == "") {
+		$("#event_details").style.background = "red";
+		rv = false;
+	}
+	if (moment(event_start_date_seq).isBefore(event_end_date_seq)) {
+		$("#event_start_date").style.background = "red";
+		$("#event_end_date").style.background = "red";
+		rv = false;
+	}
+	return rv;
+}
 // window.onload = function () {
 $(document).ready(function () {
 	$("#from_date").datepicker({
@@ -148,13 +188,16 @@ $(document).ready(function () {
 		duration: "fast",
 		showAnim: "slideDown",
 		showOptions: { direction: "up" },
+		minDate: new Date(),
 	});
+	$("#event_start_dt").datepicker("setDate", new Date());
 	$("#event_end_dt").datepicker({
 		duration: "fast",
 		showAnim: "slideDown",
 		showOptions: { direction: "up" },
+		minDate: new Date(),
 	});
-
+	$("#event_end_dt").datepicker("setDate", new Date());
 	console.log($("#viewEventsButton"));
 	$("#viewEventsButton").on("click", viewEvents);
 	$("#event_submit").on("click", eventformSubmitHandler);
