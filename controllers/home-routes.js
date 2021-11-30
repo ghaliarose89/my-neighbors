@@ -94,7 +94,7 @@ router.get("/userprofile", (req, res) => {
 			}
 			//console.log(dbUserData);
 			const user = dbUserData.get({ plain: true });
-			res.render("userprofile", { user });
+			res.render("userprofile", { user, loggedIn: req.session.loggedIn });
 			// res.json(dbUserData);
 		})
 		.catch((err) => {
@@ -160,14 +160,16 @@ router.get("/post/:id", (req, res) => {
 });
 
 
-
-
-//EVENTS MANAGEMENT
 router.get("/event-manager", (req, res) => {
-	res.render("event-manager");
+	res.render("event-manager", {
+		loggedIn: req.session.loggedIn,
+		user_first_name: req.session.first_name,
+		neighborhood_id: req.session.neighborhood_id,
+		isAdmin: req.session.isAdmin,
+	});
 });
 
-// creating post
+
 router.get('/createPost',(req, res) => {
   Post.findAll({
     where: {
@@ -179,74 +181,78 @@ router.get('/createPost',(req, res) => {
 			"post_details",
 			"title",
 			"created_at",
-      // "created_at",
-      [sequelize.literal(
-		"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
-	),
-	"comment_count",]
-    ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id'],
-        include: {
-          model: User,
-          attributes: ['first_name']
-        }
-      },
-      {
-        model: User,
-        attributes: ['first_name']
-      }
-    ]
-  })
-    .then(dbPostData => {
-      // serialize data before passing to template
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-      res.render('createPost', { 
-		  posts,
-		 loggedIn: req.session.loggedIn,
-        user_id: req.session.user_id });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+		
+			[
+				sequelize.literal(
+					"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+				),
+				"comment_count",
+			],
+		],
+		include: [
+			{
+				model: Comment,
+				attributes: ["id", "comment_text", "post_id", "user_id"],
+				include: {
+					model: User,
+					attributes: ["first_name"],
+				},
+			},
+			{
+				model: User,
+				attributes: ["first_name"],
+			},
+		],
+	})
+		.then((dbPostData) => {
+			// serialize data before passing to template
+			const posts = dbPostData.map((post) => post.get({ plain: true }));
+			res.render("createPost", {
+				posts,
+				loggedIn: req.session.loggedIn,
+				user_id: req.session.user_id,
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
 });
 
 //Edit Post route!
-router.get('/editPost/:id', (req, res) => {
+router.get("/editPost/:id", (req, res) => {
 	Post.findOne({
-	  where: {
-		id: req.params.id
-	  },
-	  attributes: [
-		"id",
-			  "post_details",
-			  "title",
-		"created_at",
-		[
-			  sequelize.literal(
-				  "(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
-			  ),
-			  "comment_count",
-		  ],
-	  ],
-	  include: [
-			  {
-				  model: Comment,
-				  attributes: ["id", "comment_text", "post_id", "user_id"],
-				  include: {
-					  model: User,
-					  attributes: ["first_name","last_name"],
-				  },
-			  },
-			  {
-				  model: User,
-				  attributes: ["first_name","last_name"],
-			  },
-		  ],
+		where: {
+			id: req.params.id,
+		},
+		attributes: [
+			"id",
+			"post_details",
+			"title",
+			"created_at",
+			[
+				sequelize.literal(
+					"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+				),
+				"comment_count",
+			],
+		],
+		include: [
+			{
+				model: Comment,
+				attributes: ["id", "comment_text", "post_id", "user_id"],
+				include: {
+					model: User,
+					attributes: ["first_name", "last_name"],
+				},
+			},
+			{
+				model: User,
+				attributes: ["first_name", "last_name"],
+			},
+		],
 	})
+
 	  .then(dbPostData => {
 		if (!dbPostData) {
 		  res.status(404).json({ message: 'No post found with this id' });
@@ -273,6 +279,26 @@ router.get('/editPost/:id', (req, res) => {
 	}
   
 	res.render('login');
-  });
+
+		.then((dbPostData) => {
+			if (!dbPostData) {
+				res.status(404).json({ message: "No post found with this id" });
+				return;
+			}
+
+			const post = dbPostData.get({ plain: true });
+			console.log(post);
+			res.render("edit-post", {
+				post,
+				loggedIn: req.session.loggedIn,
+				user_id: req.session.user_id,
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
+
 
 module.exports = router;

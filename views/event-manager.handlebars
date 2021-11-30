@@ -21,6 +21,13 @@
 				<input type="time" id="from_time" name="appt">
 			</div> --}}
 
+
+
+			</div>
+      <div class="col-md-3 text-center">
+				<a class="btn btn-primary text-light" id="viewEventsButton">View Events</a></div>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="view_event_error" ></span>
+
 		</div>
 
 
@@ -67,6 +74,7 @@
 		<form id="eventform" name="eventform">
 			<!-- Name input-->
 			<div class="form-floating mb-3">
+
 				<input class="form-control" id="event_title" type="text" placeholder="Enter the event title..."
 					data-sb-validations="required" />
 				<label for="event_title">Event Title</label>
@@ -115,6 +123,62 @@
 			<!---->
 			<!-- This is what your users will see when the form-->
 			<!-- has successfully submitted-->
+
+				<input
+					class="form-control"
+					id="event_title"
+					type="text"
+					placeholder="Enter the event title..."					
+           onfocus="changeBgColor(this)"
+				/>
+				<label for="event_title">Event Title</label></div>
+
+        	<!-- Message input-->
+			<div class="form-floating mb-4">
+				<textarea
+					class="form-control"
+					id="event_details"
+					type="text"
+					placeholder="Enter event details here..."
+					style="height: 5rem"
+          onfocus="changeBgColor(this)"
+				></textarea>
+        	<label for="event_details">Event Details</label>
+				</div>
+				
+<div class="row gx-5 align-items-center justify-content-center my-3">
+			<div class="col-md-6">
+	
+				<input
+					type="text"
+					id="event_start_dt"
+					placeholder="From Date"
+					autocomplete="off"
+           onfocus="changeBgColor(this)"
+				/></div><div class="col-md-6">
+        <input type="time" id="event_start_time" name="appt"  value:"12:00"  onfocus="changeBgColor(this)"></div>
+        
+  
+  </div>
+
+  
+<div class="row gx-5 align-items-center justify-content-center my-3">
+			<div class="col-md-6">
+        
+				<input
+					type="text"
+					id="event_end_dt"
+					placeholder="To Date"
+					autocomplete="off"
+           onfocus="changeBgColor(this)"
+				/></div>
+
+			<div class="col-md-6">
+        <input type="time" id="event_end_time" name="appt" value:"12:00"  onfocus="changeBgColor(this)"></div>
+			</div>
+
+			
+
 			<div class="d-none" id="submitSuccessMessage">
 				<div class="text-center mb-3">
 					<div class="fw-bolder">Form submission successful!</div>
@@ -130,6 +194,7 @@
 				<div class="text-center text-danger mb-3">Error sending message!</div>
 			</div>
 			<!-- Submit Button-->
+
 			{{!-- <div class="d-grid"><button class="btn btn-primary btn-lg " id="event_submit"
 					type="button">Submit</button></div> --}}
 			<div class="row justify-content-between mt-3"><button class="btn btn-primary btn-lg" id="event_submit"
@@ -137,6 +202,21 @@
 
 				<button class="btn btn-primary btn-lg" id="event_cancel" type="button">Cancel</button>
 			</div>
+
+		
+        <div class="row justify-content-between mt-3"><button
+								class="btn btn-primary btn-lg"
+								id="event_submit"
+								type="button"
+							>Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+							<button
+								class="btn btn-primary btn-lg"
+								id="event_cancel"
+								type="button"
+							>Cancel</button></div>
+              <span id="event_submit_error"></span>
+
 		</form>
 	</div>
 

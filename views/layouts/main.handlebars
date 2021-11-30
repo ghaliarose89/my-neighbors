@@ -52,9 +52,10 @@
 									class="nav-link"
 									href="about.handlebars"
 								>About</a></li>
-                {{#unless loggedIn}}
-							<li class="nav-item"><a class="nav-link" href="/signup">New User</a></li>
-              {{else}} <li class="nav-item"><a class="nav-link" href="/createPost">Create a Post</a></li>{{/unless}}
+                {{#if loggedIn}}
+								<li class="nav-item"><a class="nav-link" href="/createPost">Create a Post</a></li>
+							 {{else}}<li class="nav-item"><a class="nav-link" href="/signup">New User</a></li>{{/if}}
+          
 							{{#if isAdmin}}
 								<li class="nav-item dropdown">
 									<a
@@ -72,10 +73,10 @@
 									>
 										<li><a class="dropdown-item" href="/event-manager">Event
 												Manager</a></li>
-										<li><a
+										{{!-- <li><a
 												class="dropdown-item"
 												href="portfolio-item.html"
-											>Portfolio Item</a></li>
+											>Portfolio Item</a></li> --}}
 									</ul>
 								</li>
 								{{! <li class="nav-item"><a

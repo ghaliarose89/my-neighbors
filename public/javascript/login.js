@@ -55,41 +55,6 @@ if (document.getElementById("logout")) {
 	// 	.getElementById("userprofileButton")
 	// 	.addEventListener("click", accessProfile);
 }
-window.onload = function () {
-	//GET NEIGHBORHOODS
-
-	let neighborhoods = [];
-	loadNeighborhoodsData()
-		.then((data) => {
-			neighborhoods = data;
-			if (document.getElementById("neighborhood_id_hidden")) {
-				const user_neighborhood = document.getElementById(
-					"neighborhood_id_hidden"
-				).value;
-				const neighborhood = neighborhoods.find(
-					(n) => n.id == user_neighborhood
-				);
-				console.log(neighborhood);
-				document.getElementById("welcome_msg_holder").innerHTML =
-					"Welcome To " + neighborhood.neighborhood_name;
-			}
-
-			return data;
-		})
-		.then((err) => {});
-
-	//GET EVENTS
-	let events = [];
-	loadEventsData()
-		.then((data) => {
-			events = data;
-			console.log(events);
-			buildEventCards(events);
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-};
 
 // <div class="col mb-5 h-100">
 // 	<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
@@ -128,3 +93,38 @@ function buildEventCards(events) {
 		$("#eventCardContainer").append(div1);
 	}
 }
+window.onload = function () {
+	//GET NEIGHBORHOODS
+
+	let neighborhoods = [];
+	loadNeighborhoodsData()
+		.then((data) => {
+			neighborhoods = data;
+			if (document.getElementById("neighborhood_id_hidden")) {
+				const user_neighborhood = document.getElementById(
+					"neighborhood_id_hidden"
+				).value;
+				const neighborhood = neighborhoods.find(
+					(n) => n.id == user_neighborhood
+				);
+				console.log(neighborhood);
+				document.getElementById("welcome_msg_holder").innerHTML =
+					"Welcome To " + neighborhood.neighborhood_name;
+			}
+
+			return data;
+		})
+		.then((err) => {});
+
+	//GET EVENTS
+	let events = [];
+	loadEventsData()
+		.then((data) => {
+			events = data;
+			console.log(events);
+			buildEventCards(events);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};

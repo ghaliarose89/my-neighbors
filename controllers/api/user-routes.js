@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { User, Post } = require("../../models");
-
+const verify_user_address = require("../address_verify");
 // get all users
 router.get("/", (req, res) => {
 	User.findAll({
@@ -126,6 +126,7 @@ router.post("/logout", (req, res) => {
 });
 //Updating user data
 router.put("/:id", (req, res) => {
+	console.log(req.body);
 	// expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
 
 	// pass in req.body instead to only update what's passed through
@@ -166,5 +167,36 @@ router.delete("/:id", (req, res) => {
 			res.status(500).json(err);
 		});
 });
+//VERIFY USER ADDRESS
+router.post("/smartystreets", (req, res) => {
+	let flag = false;
+	verify_user_address(
+		req.body.address,
+		req.body.city,
+		req.body.state,
+		req.body.zip
+	)
+		.then((result) => {
+			console.log(result);
+			console.log("ssrsponds with" + result);
+			res.json({ ssresult: result });
+		})
+		.catch((err) => {
+			console.log(err);
+			//console.log("address verification failed %%%%%%%%%%");
+			res.status(500).json({ message: "address verification failed" });
+		});
+	// .then((response1) => {
+	//	response1.lookups.map((lookup) => console.log(lookup.result));
 
+	//	return true;
+
+	// if (data.length > 0) {
+	// 	console.log("address verified**************");
+
+	// } else {
+	// 	console.log("failed again");
+	// 	res.status(500).json({ message: "address verification failed" });
+	// }
+});
 module.exports = router;
