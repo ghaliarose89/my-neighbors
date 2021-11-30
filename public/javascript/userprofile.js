@@ -11,7 +11,7 @@ const updateUserProfile = async (event) => {
 
 	const user_id = document.getElementById("user-id").value;
 	const fetchRequest = "/api/users/" + user_id;
-	alert(password);
+	alert(address);
 	if (password === "********") {
 		printErrorMsg("Password cannot be blank.");
 		return false;
@@ -21,8 +21,9 @@ const updateUserProfile = async (event) => {
 		body: JSON.stringify({
 			first_name,
 			last_name,
-			address,
-			city,
+			address: address,
+      city,
+      state,
 			zip,
 			email,
 			password,

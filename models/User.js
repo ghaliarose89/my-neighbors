@@ -53,6 +53,10 @@ User.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		state: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 
 		zip: {
 			type: DataTypes.INTEGER,
@@ -69,6 +73,11 @@ User.init(
 				model: "neighborhood",
 				key: "id",
 			},
+		},
+		isAdmin: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: 0,
 		},
 	},
 	{

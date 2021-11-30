@@ -29,13 +29,14 @@ router.get("/", (req, res) => {
 			"id",
 			"post_details",
 			"title",
-		
-			// [
-			// 	sequelize.literal(
-			// 		"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
-			// 	),
-			// 	"comment_count",
-			// ],
+			"created_at",
+
+			[
+				sequelize.literal(
+					"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+				),
+				"comment_count",
+			],
 		],
 		include: [
 			{
@@ -43,22 +44,24 @@ router.get("/", (req, res) => {
 				attributes: ["id", "comment_text", "post_id", "user_id"],
 				include: {
 					model: User,
-					attributes: ["first_name"],
+					attributes: ["first_name", "last_name"],
 				},
 			},
 			{
 				model: User,
-				attributes: ["first_name"],
+				attributes: ["first_name", "last_name"],
 			},
 		],
 	})
 		.then((dbPostData) => {
 			const posts = dbPostData.map((post) => post.get({ plain: true }));
-			console.log(posts);
+			//console.log(posts);
 			res.render("homepage", {
 				posts,
 				loggedIn: req.session.loggedIn,
 				user_first_name: req.session.first_name,
+				neighborhood_id: req.session.neighborhood_id,
+				isAdmin: req.session.isAdmin,
 			});
 		})
 		.catch((err) => {
@@ -66,6 +69,8 @@ router.get("/", (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+//USER PROFILE
 router.get("/userprofile", (req, res) => {
 	User.findOne({
 		attributes: { exclude: ["password"] },
@@ -82,7 +87,7 @@ router.get("/userprofile", (req, res) => {
 				res.status(404).json({ message: "No user found with this id" });
 				return;
 			}
-			console.log(dbUserData);
+			//console.log(dbUserData);
 			const user = dbUserData.get({ plain: true });
 			res.render("userprofile", { user });
 			// res.json(dbUserData);
@@ -92,4 +97,165 @@ router.get("/userprofile", (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+//GET POSTS
+router.get("/post/:id", (req, res) => {
+	Post.findOne({
+		where: {
+			id: req.params.id,
+		},
+		attributes: [
+			"id",
+			"post_details",
+			"title",
+			"created_at",
+			[
+				sequelize.literal(
+					"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+				),
+				"comment_count",
+			],
+		],
+		include: [
+			{
+				model: Comment,
+				attributes: ["id", "comment_text", "post_id", "user_id"],
+				include: {
+					model: User,
+					attributes: ["first_name", "last_name"],
+				},
+			},
+			{
+				model: User,
+				attributes: ["first_name", "last_name"],
+			},
+		],
+	})
+		.then((dbPostData) => {
+			if (!dbPostData) {
+				res.status(404).json({ message: "No post found with this id" });
+				return;
+			}
+
+			const post = dbPostData.get({ plain: true });
+			console.log(post);
+			res.render("single-post", {
+				post,
+				loggedIn: req.session.loggedIn,
+				user_id: req.session.user_id,
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
+
+
+//EVENTS MANAGEMENT
+router.get("/event-manager", (req, res) => {
+	res.render("event-manager");
+});
+
+router.get('/createPost',(req, res) => {
+  Post.findAll({
+    where: {
+      // use the ID from the session
+      user_id: req.session.user_id
+    },
+    attributes: [
+      "id",
+			"post_details",
+			"title",
+			"created_at",
+      // "created_at",
+      [sequelize.literal(
+		"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+	),
+	"comment_count",]
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id'],
+        include: {
+          model: User,
+          attributes: ['first_name']
+        }
+      },
+      {
+        model: User,
+        attributes: ['first_name']
+      }
+    ]
+  })
+    .then(dbPostData => {
+      // serialize data before passing to template
+      const posts = dbPostData.map(post => post.get({ plain: true }));
+      res.render('createPost', { 
+		  posts,
+		 loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+//Edit Post route!
+router.get('/editPost/:id', (req, res) => {
+	Post.findOne({
+	  where: {
+		id: req.params.id
+	  },
+	  attributes: [
+		"id",
+			  "post_details",
+			  "title",
+		"created_at",
+		[
+			  sequelize.literal(
+				  "(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+			  ),
+			  "comment_count",
+		  ],
+	  ],
+	  include: [
+			  {
+				  model: Comment,
+				  attributes: ["id", "comment_text", "post_id", "user_id"],
+				  include: {
+					  model: User,
+					  attributes: ["first_name","last_name"],
+				  },
+			  },
+			  {
+				  model: User,
+				  attributes: ["first_name","last_name"],
+			  },
+		  ],
+	})
+	  .then(dbPostData => {
+		if (!dbPostData) {
+		  res.status(404).json({ message: 'No post found with this id' });
+		  return;
+		}
+  
+		const post = dbPostData.get({ plain: true });
+		console.log(post)
+		res.render('edit-post', {
+		  post,
+		  loggedIn: req.session.loggedIn,
+		  user_id: req.session.user_id
+		});
+	  })
+	  .catch(err => {
+		console.log(err);
+		res.status(500).json(err);
+	  });
+  });
+
+
+
 module.exports = router;

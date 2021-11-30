@@ -1,146 +1,138 @@
 <!-- Header-->
 <div class="heroContainer">
-  <header class="hero py-5">
-    <div class="container px-5">
-      <div class="row gx-5 align-items-center justify-content-center">
-        <div class="col-lg-8 col-xl-7 col-xxl-6">
-          <div class="my-5 text-center text-xl-start">
-            <h1 class="display-5 fw-bolder text-white mb-2">Welcome To The
-              Neighborhood!
-            </h1>
-            </div>
-          </div>
-          {{! login-form }}
-        <div class="col-xl-5 col-xxl-6 d-xl-block text-center">
-          <div class="col-md-7">            
-            <div class="card-body loginDiv">
-                      {{#if loggedIn}}
-            {{else}}
-              <p class="lead fw-bold mb-4 login-card-description">Sign in to
-                view community posts and events</p>
-              {{! <p class="">Sign into your account</p> }}
-              <form action="#!">
-                <div class="form-group">
-                  <label for="email" class="sr-only">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    class="form-control"
-                    placeholder="Email address"
-                  />
-                </div>
-                <div class="form-group mb-4">
-                  <label for="password" class="sr-only">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    class="form-control"
-                    placeholder="***********"
-                  />
-                </div>
-                <input
-                  name="login"
-                  id="login"
-                  class="btn btn-block login-btn mb-4"
-                  type="button"
-                  value="Login"
-                />
-              </form>
-			  <div id='errMsg' style="font-weight:bold;color:red"></div>
-              <p class="login-card-footer-text">Don't have an account?
-                <a href="/signup" class="text-reset">Register here</a></p>
-  {{/if}}  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+	<header class="hero py-5">
+		<div class="container px-5">
+			<div class="row gx-5 align-items-center justify-content-center">
+				<div class="col-lg-8 col-xl-7 col-xxl-6">
+					<div class="my-5 text-center text-xl-start">
+						<h1 class="display-5 fw-bolder text-white mb-2 " id ="welcome_msg_holder">Welcome To The
+							Neighborhood!
+						</h1>
+					</div>
+				</div>
+			
+				{{! login-form }}
+				<div class="col-xl-5 col-xxl-6 d-xl-block text-center">
+					<div class="col-md-7">
+						<div class="card-body loginDiv">
+							{{#if loggedIn}}
+							{{else}}
+							<p class="lead fw-bold mb-4 login-card-description">Sign in to
+								view community posts and events</p>
+							{{! <p class="">Sign into your account</p> }}
+							<form action="#!">
+								<div class="form-group">
+									<label for="email" class="sr-only">Email</label>
+									<input type="email" name="email" id="email" class="form-control"
+										placeholder="Email address" />
+								</div>
+								<div class="form-group mb-4">
+									<label for="password" class="sr-only">Password</label>
+									<input type="password" name="password" id="password" class="form-control"
+										placeholder="***********" />
+								</div>
+								<input name="login" id="login" class="btn btn-block login-btn mb-4" type="button"
+									value="Login" />
+							</form>
+							<div id='errMsg' style="font-weight:bold;color:red"></div>
+							<p class="login-card-footer-text">Don't have an account?
+								<a href="/signup" class="text-reset">Register here</a>
+							</p>
+							{{/if}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 </div>
- {{#if loggedIn}}
+{{!-- {{#if loggedIn}}
 <div class=" container px-5 mt-5 text-center" id="welcome-message">
-   <div class="row">
-     <div class="col-sm-4"></div>
-    <div class="col-sm-4">
-        <h5 class ="lead fw-bolder">Welcome {{user_first_name}} !!</h5>
-    </div><div class="col-sm-4">
-      <div class="d-grid w-50" id="userprofileButton">
-        <a class="btn btn-outline-primary" href="/userprofile">User Profile</a>
-      </div>
-         </div>
-</div>
-</div>
-{{else}}
-<div class=" container px-5 mt-5 text-center" id="welcome-message"><h5 class ="lead fw-bolder">Welcome Neighbor!! </h5></div>
-{{/if}}
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4">
+			<h5 class="lead fw-bolder">Welcome {{user_first_name}} !!</h5>
+		</div>
+		<div class="col-sm-4">
+			<div class="d-grid w-50" id="userprofileButton">
+				<a class="btn btn-outline-primary" href="/userprofile">User Profile</a>
+			</div>
+		</div>
+	</div>
+</div> --}}
+{{!-- {{else}} --}}
+{{!-- <div class=" container px-5 mt-5 text-center" id="welcome-message">
+	<h5 class="lead fw-bolder">Welcome Neighbor!! </h5>
+</div> --}}
+{{!-- {{/if}} --}}
 <section class="py-3" id="features">
-  <div class="container px-5 my-5">
-    <div class="row gx-5">
-      <div class="col-lg-4 mb-5 mb-lg-0">
-        <h2 class="fw-bolder mb-0">A better way to start building.</h2>
-      </div>
-      <div class="col-lg-8">
-        <div class="row gx-5 row-cols-1 row-cols-md-2">
-          <div class="col mb-5 h-100">
-            <div
-              class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
-            ><i class="bi bi-collection"></i></div>
-            <h2 class="h5">Featured title</h2>
-            <p class="mb-0">Paragraph of text beneath the heading to explain the
-              heading. Here is just a bit more text.</p>
-          </div>
-          <div class="col mb-5 h-100">
-            <div
-              class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
-            ><i class="bi bi-building"></i></div>
-            <h2 class="h5">Featured title</h2>
-            <p class="mb-0">Paragraph of text beneath the heading to explain the
-              heading. Here is just a bit more text.</p>
-          </div>
-          <div class="col mb-5 mb-md-0 h-100">
-            <div
-              class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
-            ><i class="bi bi-toggles2"></i></div>
-            <h2 class="h5">Featured title</h2>
-            <p class="mb-0">Paragraph of text beneath the heading to explain the
-              heading. Here is just a bit more text.</p>
-          </div>
-          <div class="col h-100">
-            <div
-              class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
-            ><i class="bi bi-toggles2"></i></div>
-            <h2 class="h5">Featured title</h2>
-            <p class="mb-0">Paragraph of text beneath the heading to explain the
-              heading. Here is just a bit more text.</p>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="event-calendar">
-    <!-- Calendar -->
-  </section>
-  {{!-- Posts --}}
-  <section>
-    <div class="card bg-light">
-        {{#each posts}}
-        <div class="d-flex mb-4">
-          {{!-- <div class="flex-shrink-0"><img class="rounded-circle"
-              src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div> --}}
-          <div class="ms-3">
-            Post {{id}}
-            <div class="fw-bold"><a href="single-post">{{title}}</a>    </div>  
-            {{post_details}} <br> By
-            {{user.first_name}}<br>
-            this post has{{comment_count}}  Comments<br>
-            On {{created_at}}<br>
-          </div>  
-        </div>
-          <hr>
-        {{/each}}
-    </div>
-  </section>
+	<div class="container px-5 my-5">
+		<div class="row gx-5">
+			<div class="col-lg-4 mb-5 mb-lg-0">
+				<h2 class="fw-bolder mb-0">Neighborhood Events</h2>
+			</div>
+			<div class="col-lg-8" ><!--event card container-->
+				<div class="row gx-5 row-cols-1 row-cols-md-2 justify-content-between" id="eventCardContainer">
+					
+					{{!-- <div class="col mb-5 h-100">
+						<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+					<i class="bi bi-calendar3"></i>
+						</div>
+						<h2 class="h5"></h2>
+						<p class="mb-0"></p>
+					</div>
+					
+					<div class="col mb-5 h-100">
+						<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i
+								class="bi bi-building"></i></div>
+						<h2 class="h5">Featured title</h2>
+						<p class="mb-0">Paragraph of text beneath the heading to explain the
+							heading. Here is just a bit more text.</p>
+					</div>
+					<div class="col mb-5 mb-md-0 h-100">
+						<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i
+								class="bi bi-toggles2"></i></div>
+						<h2 class="h5">Featured title</h2>
+						<p class="mb-0">Paragraph of text beneath the heading to explain the
+							heading. Here is just a bit more text.</p>
+					</div>
+					<div class="col h-100">
+						<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i
+								class="bi bi-toggles2"></i></div>
+						<h2 class="h5">Featured title</h2>
+						<p class="mb-0">Paragraph of text beneath the heading to explain the
+							heading. Here is just a bit more text.</p>
+					</div> --}}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="event-calendar">
+	<!-- Calendar -->
+</section>
+{{!-- Posts --}}
+<section>
+	{{#if loggedIn}}
+	<div class="card bg-light">
+		{{#each posts}}
+		<div class="d-flex mb-4">
+			{{!-- <div class="flex-shrink-0"><img class="rounded-circle"
+					src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div> --}}
+			<div class="ms-3">
+				Post {{id}}
+				<div class="fw-bold"><a href="/post/{{id}}">{{title}}</a> </div>
+				{{post_details}} <br> By
+				{{user.first_name}}<br>
+				this post has{{comment_count}} Comments<br>
+				On {{format_date created_at}}<br>
+
+			</div>
+		</div>
+		<hr>
+		{{/each}}
+	</div>
+	{{/if}}
+</section>
 </main>
+<script src="javascript/login.js"></script>

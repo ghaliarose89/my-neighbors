@@ -9,8 +9,10 @@ const userData = [
 		password: "ss1234",
 		address: "10 mainland dr",
 		city: "Woodlands",
+		state: "TX",
 		zip: 77012,
 		neighborhood_id: 1,
+		isAdmin: 0,
 	},
 	{
 		first_name: "misha",
@@ -19,8 +21,10 @@ const userData = [
 		password: "mm1234",
 		address: "14 mainland dr",
 		city: "Woodlands",
+		state: "TX",
 		zip: 77012,
 		neighborhood_id: 1,
+		isAdmin: 0,
 	},
 	{
 		first_name: "abigail",
@@ -29,8 +33,10 @@ const userData = [
 		password: "aa1234",
 		address: "18 mainland dr",
 		city: "Woodlands",
+		state: "TX",
 		zip: 77012,
 		neighborhood_id: 1,
+		isAdmin: 0,
 	},
 	{
 		first_name: "Jacob",
@@ -39,8 +45,10 @@ const userData = [
 		password: "jj1234",
 		address: "1023 sugarland dr",
 		city: "Sugarland",
+		state: "TX",
 		zip: 77001,
 		neighborhood_id: 2,
+		isAdmin: 0,
 	},
 	{
 		first_name: "Cindy",
@@ -49,8 +57,10 @@ const userData = [
 		password: "cc1234",
 		address: "724 Sundarban dr",
 		city: "Sugarland",
+		state: "TX",
 		zip: 77001,
 		neighborhood_id: 2,
+		isAdmin: 0,
 	},
 ];
 
