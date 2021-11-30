@@ -89,7 +89,7 @@ router.get("/userprofile", (req, res) => {
 			}
 			//console.log(dbUserData);
 			const user = dbUserData.get({ plain: true });
-			res.render("userprofile", { user });
+			res.render("userprofile", { user, loggedIn: req.session.loggedIn });
 			// res.json(dbUserData);
 		})
 		.catch((err) => {
