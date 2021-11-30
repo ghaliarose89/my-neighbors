@@ -1,17 +1,19 @@
 <section>
-  <h2>Create New Post</h2>
-
-  <form class="new-post-form">
-    <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" />
+  <h2 id="createPost-title">Create New Post</h2>
+<div class="col-md-3"></div>  
+<div id="form-div" class="col-md-8">
+  <form id="post-form" class="new-post-form">
+    <div class="input-group">
+      <span class="input-group-text">Post Title</span>
+      <input type="text" aria-label="First name" class="form-control">
     </div>
-    <div>
-      <label for="post-url">Post Details</label>
-      <textarea id="post-url" name="post-url"></textarea>
+    <div class="input-group">
+      <span class="input-group-text">Post Details</span>
+      <input type="text" aria-label="First name" class="form-control">
     </div>
-    <button type="submit" class="btn">Create</button>
+    <button id="submit-post" type="submit" class="btn">Create</button>
   </form>
+</div>  
 </section>
 <input type="hidden" id="user_id" value={{user_id}}>
 

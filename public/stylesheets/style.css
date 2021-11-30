@@ -408,6 +408,32 @@ a:not([href]):not([class]):hover {
 	text-decoration: none;
 }
 
+#createPost-title {
+	text-align: center;
+	color: #0d6efd;
+}
+
+#form-div{ 
+	align: center;
+}
+
+#post-form{ 
+	
+	text-align: center;	
+	width: 500px;
+	margin-top: 5px;
+}
+
+
+#submit-post{
+	color: whitesmoke;
+	background-color: #0d6efd;
+	width: 160px;
+	margin-top: 15px;
+}
+
+
+
 pre,
 code,
 kbd,
