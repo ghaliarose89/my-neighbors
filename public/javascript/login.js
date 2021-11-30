@@ -45,12 +45,10 @@ async function logout() {
 	} else {
 		alert(response.statusText);
 	}
-}
+};
 
-if (document.querySelector("#login")) {
-	let loginBtn = document.querySelector("#login");
-	loginBtn.addEventListener("click", loginForm);
-}
+	 document.querySelector("#login").addEventListener("click", loginForm);
+
 if (document.getElementById("logout")) {
 	document.getElementById("logout").addEventListener("click", logout);
 	// document

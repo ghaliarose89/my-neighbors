@@ -32,10 +32,7 @@ router.get("/", (req, res) => {
 			"created_at",
 
 			[
-				sequelize.literal(
-					"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
-				),
-				"comment_count",
+				sequelize.literal("(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"),"comment_count",
 			],
 		],
 		include: [
@@ -68,29 +65,8 @@ router.get("/", (req, res) => {
 			res.status(500).json(err);
 		});
 
-	// Event.findAll({
-	//   attributes: [
-	//   	"event_title",
-	//   	"event_details",
-	//   	"event_start_date",
-	//     "event_end_date"
-	//   ]
-	// })
-
-	//   .then((dbPostData) => {
-
-	//     const events = dbPostData.map((event) => event.get({ plain: true }));
-	//     console.log(events);
-	//     res.render("homepage", {
-	//       events,
-
-	//     });
-	//   })
-	//   .catch((err) => {
-	//     console.log(err);
-	//     res.status(500).json(err);
-	//   });
 });
+
 router.get("/userprofile", (req, res) => {
 	User.findOne({
 		attributes: { exclude: ["password"] },
@@ -118,6 +94,7 @@ router.get("/userprofile", (req, res) => {
 		});
 });
 
+//getting single post
 router.get("/post/:id", (req, res) => {
 	Post.findOne({
 		where: {
@@ -170,6 +147,7 @@ router.get("/post/:id", (req, res) => {
 		});
 });
 
+// creating post
 router.get('/createPost',(req, res) => {
   Post.findAll({
     where: {
@@ -268,7 +246,13 @@ router.get('/editPost/:id', (req, res) => {
 		res.status(500).json(err);
 	  });
   });
-
-
+  router.get('/login', (req, res) => {
+	if (req.session.loggedIn) {
+	  res.redirect('/');
+	  return;
+	}
+  
+	res.render('login');
+  });
 
 module.exports = router;
