@@ -46,7 +46,7 @@ async function logout() {
 		alert(response.statusText);
 	}
 };
-
+if (document.getElementById("login"))
 	 document.querySelector("#login").addEventListener("click", loginForm);
 
 if (document.getElementById("logout")) {

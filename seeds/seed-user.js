@@ -62,6 +62,21 @@ const userData = [
 		neighborhood_id: 2,
 		isAdmin: 0,
 	},
+	{
+		"id" : 6,
+		"first_name" : "ghalia",
+		"last_name" : "sami",
+		"email" : "ghalia@gmail.com",
+		"password" : "$2b$10$1tF48nGA3Xp9leMC9hOvvu/QvFcwwefTVJPAKUBe8BDbz7uYUsmve",
+		"address" : "4606 primrose vallen ln",
+		"city" : "fulshear",
+		"state" : "TX",
+		"zip" : 77012,
+		"neighborhood_id" : 1,
+		"is_admin" : 1,
+		"created_at" : "2021-11-30 03:37:58",
+		"updated_at" : "2021-11-30 03:37:58"
+	},
 ];
 
 const seedUsers = () => User.bulkCreate(userData);
