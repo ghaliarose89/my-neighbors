@@ -64,10 +64,7 @@ router.post("/daterange", (req, res) => {
 		],
 		where: {
 			created_at: {
-				[Op.lt]: req.body.to_post_date,
-			},
-			created_at: {
-				[Op.gt]: req.body.from_post_date,
+				[Op.between]: [req.body.from_post_date, req.body.to_post_date],
 			},
 		},
 	})

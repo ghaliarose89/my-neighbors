@@ -3,6 +3,8 @@ const sequelize = require("../config/connection");
 const Neighborhood = require("../models/Neighborhood");
 const { Post, User, Comment, Event } = require("../models");
 const { Op } = require("sequelize");
+const moment = require("moment");
+
 router.get("/signup", (req, res) => {
 	Neighborhood.findAll()
 		.then((dbResultData) => {
@@ -22,7 +24,11 @@ router.get("/signup", (req, res) => {
 		});
 });
 //getting all posts if the user loged in
+
+let to_date = moment().format("YYYY-MM-DD HH:mm:ss");
+let from_date = moment().subtract(15, "days").format("YYYY-MM-DD HH:mm:ss");
 router.get("/", (req, res) => {
+	console.log(from_date, to_date);
 	console.log("======================");
 	Post.findAll({
 		order: [["created_at", "DESC"]],
@@ -53,14 +59,17 @@ router.get("/", (req, res) => {
 				attributes: ["first_name", "last_name"],
 			},
 		],
-		// where: {
-		// 	created_at: {
-		// 		[Op.lt]: req.body.to_post_date,
-		// 	},
-		// 	created_at: {
-		// 		[Op.gt]: req.body.from_post_date,
-		// 	},
-		// },
+		where: {
+			// created_at: {
+			// 	[Op.lt]: to_date,
+			// },
+			// created_at: {
+			// 	[Op.gt]: from_date,
+			// },
+			created_at: {
+				[Op.between]: [from_date, to_date],
+			},
+		},
 	})
 		.then((dbPostData) => {
 			const posts = dbPostData.map((post) => post.get({ plain: true }));
