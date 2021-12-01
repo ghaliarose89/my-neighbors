@@ -1,54 +1,37 @@
-<section class="py-3" id="features">
-  <div class="container px-5 my-5">
-    <div class="row gx-5">
-      <input type="hidden" id="post_id" value={{id}}>
-      <div class="card" style="width: 50rem;">
+<div class="">
+    <div class="ms-3">
+        Post {{post.id}}
+        <div class="fw-bold">{{post.title}} </div>
+        {{post.post_details}} <br> By
+        {{post.user.first_name}}<br>
+        this post has{{comments.comment_count}} Comments<br>
+        On {{format_date post.created_at}}<br>
+    </div>
+    {{#each post.comments}}
+    <div>
+       
+        <li>
+          {{comment_text}} by {{user.first_name}} 
+        </li>
+        <hr>
+    </div>
+    {{/each}}
+    <input type="hidden" id="user_id" value={{user_id}}>
 
-        <div class="card-body">
-          <h4 class=" bg-transparent border-success h4" style="color:burlywood">{{post.title}}</h4>
-          <p class="card-text" style="font-weight:bold"> <br>{{post.post_details}}</p>
-          <p class="card-text h6">By {{post.user.first_name}} On {{format_date post.created_at}}</p>
-          {{!-- <div class="card-footer"></div> --}}
+</div>
+<section>
+  <h2>Create New Comment</h2>
 
-        </div>
-        {{#if post.comments.length}}
-        <h5 class=" bg-transparent border-success h5" style="color:burlywood">Comments</h5>
-        <div>
-        {{#each post.comments}}
-        <div>
+  <form class="comment-form">
+  <div>
+    <textarea name="comment-body" style="height: 14rem" id='comment-text'></textarea>
+  </div>
 
-          <li>
-            {{comment_text}} by {{user.first_name}}
-          </li>
-          <hr>
-        </div>
-        {{/each}}
-        {{/if}}
-        </div>
-        <input type="hidden" id="user_id" value={{user_id}}>
-        <form class="comment-form">
-          <div class="lh-1">
-        <h5 class=" bg-transparent border-success h5" style="color:burlywood">Add Comment</h5>
-      </div>
-        <div>
-          <textarea name="comment-body" style="height: 20rem width: 50rem" id='comment-text'></textarea>
-        </div>
-
-        <div class="card-body">
-          <button type="submit" class="btn btn-primary " id='addCommentBtn'>Add comment</button> <br>
-          {{!-- <button type="button" class="btn btn-primary " id='likeBtn'> <a href='/'>Back to Homepage</a></button>
-          --}}
-        </div>
-      </form>
-      </div>
-      
-
-
-      
+  <div>
+    <button type="submit" id='addCommentBtn'>add comment</button> </div><br>
+    <button type="button" class="upvote-btn" id= 'likeBtn'> <a href='/' style="text-decoration: none;">Back to Posts</a></button>
+  </div>
+</form>
 </section>
-</div>
-</div>
-</div>
-</section>
-
 <script src="/javascript/single-post.js"></script>
+
