@@ -1,12 +1,16 @@
-<div class="">
-    <div class="ms-3">
-        Post {{post.id}}
-        <div class="fw-bold">{{post.title}} </div>
-        {{post.post_details}} <br> By
-        {{post.user.first_name}}<br>
-        this post has{{comments.comment_count}} Comments<br>
-        On {{format_date post.created_at}}<br>
-    </div>
+<section class="container">
+  <div class="col-sm">
+      <input type="hidden" id="post_id" value={{id}}>
+      <div class="card" style="width: 50rem;">
+       
+        <div class="card-body">
+          <h4 class="card-header bg-transparent border-success h4" style="color:burlywood">{{post.title}}</h4>
+          <p class="card-text"style="font-weight:bold"> <br>{{post.post_details}}</p>
+          <p class="card-text" >By {{post.user.first_name}} On {{format_date created_at}}</p>  
+          {{!-- <div class="card-footer"></div> --}}
+
+        </div>
+  
     {{#each post.comments}}
     <div>
        

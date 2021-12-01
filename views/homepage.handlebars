@@ -91,7 +91,7 @@
 
 {{#if loggedIn}}
 {{#each posts}}
-			{{!-- <div class="col"> --}}
+			
 				<div class="card " style="width:90rem;">
 					<div class="card-body">
 						<p class="card-header bg-transparent border-success h4" style="color:cornflowerblue;font-size:25 ">
@@ -105,10 +105,10 @@
 							
 						</div>
 
-						{{!-- <small class="text-muted">Last updated 3 mins ago</small> --}}
+					
 					</div>
 				</div>
-			{{!-- </div> --}}
+		
 			
 			{{/each}}
 {{/if}}
@@ -119,47 +119,8 @@
 </section>
 
 <!---------------------------------------------->
-{{!-- Posts --}}
-{{!-- <section class="py-3" id="features">
-	<div class="container px-5 my-5">
-		<div class="row gx-5">
-			<div class="col-lg-4 mb-5 mb-lg-0">
-	{{#if loggedIn}}
-	<div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-		<div class="lh-1">
-			<h1 class="h5 mb-0 text-center lh-1 event-mgr-header ">Community Posts:</h1>
-		</div>
-	</div> --}}
-
-	{{!-- <div class="container">
-		<div class="row">
-			{{#each posts}}
-			<div class="col">
-				<div class="card " style="width:60rem;">
-					<div class="card-body">
-						<p class="card-header bg-transparent border-success" style="color:cornflowerblue;font-size:30 ">
-							<a href="/post/{{id}}" style="text-decoration: none;" >{{title}}</a></p>
-						<p class="card-text" style="font-size:20"> {{post_details}}</p>
-						
-						<br><br>
-						<div class="card-footer">
-							<p class="card-text">By {{user.first_name}} On {{format_date created_at}}</p>
-							<p class="card-text"> {{comment_count}} comment</p>
-						</div>
-
-						{{!-- <small class="text-muted">Last updated 3 mins ago</small> --}}
-					</div>
-				</div>
-			</div>
-			
-			{{!-- {{/each}} --}}
-
-			{{!-- {{/if}} --}}
-{{!-- 
-		</div>
-	</div> --}} --}}
 
 	
-{{!-- </section> --}}
+
 </main>
 <script src="javascript/login.js"></script>
