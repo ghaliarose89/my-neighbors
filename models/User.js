@@ -68,7 +68,7 @@ User.init(
 
 		neighborhood_id: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
+			allowNull: true,
 			references: {
 				model: "neighborhood",
 				key: "id",
