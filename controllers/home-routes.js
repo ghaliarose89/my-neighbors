@@ -272,33 +272,5 @@ router.get("/editPost/:id", (req, res) => {
 			res.status(500).json(err);
 		});
 });
-router.get('/login', (req, res) => {
-	if (req.session.loggedIn) {
-		res.redirect('/');
-		return;
-	}
-
-	res.render('login')
-
-		.then((dbPostData) => {
-		if (!dbPostData) {
-			res.status(404).json({ message: "No post found with this id" });
-			return;
-		}
-
-		const post = dbPostData.get({ plain: true });
-		console.log(post);
-		res.render("edit-post", {
-			post,
-			loggedIn: req.session.loggedIn,
-			user_id: req.session.user_id,
-		});
-	})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json(err);
-		});
-});
-
 
 module.exports = router;
