@@ -21,9 +21,11 @@ User.belongsToMany(Post, {
 	foreignKey: "user_id",
 	onDelete: "SET NULL",
 });
-Post.belongsToMany(User, { through: "LikedPosts",
- foreignKey: "post_id",
- onDelete: "SET NULL", });
+Post.belongsToMany(User, {
+	through: "LikedPosts",
+	foreignKey: "post_id",
+	onDelete: "SET NULL",
+});
 
 LikedPosts.belongsTo(User, {
 	foreignKey: "user_id",
@@ -56,6 +58,10 @@ Post.hasMany(Comment, {
 });
 
 User.belongsTo(Neighborhood, {
+	foreignKey: "neighborhood_id",
+	onDelete: "SET NULL",
+});
+Neighborhood.hasMany(User, {
 	foreignKey: "neighborhood_id",
 	onDelete: "SET NULL",
 });
