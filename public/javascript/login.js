@@ -28,7 +28,8 @@ async function loginForm(event) {
 		if (response.ok) {
 			console.log("ok");
 			document.location.replace("/");
-		} else document.querySelector("#errMsg").innerHTML = "Wrong email OR password";
+		} else
+			document.querySelector("#errMsg").innerHTML = "Wrong email OR password";
 	}
 }
 
@@ -45,9 +46,9 @@ async function logout() {
 	} else {
 		alert(response.statusText);
 	}
-};
+}
 if (document.getElementById("login"))
-	 document.querySelector("#login").addEventListener("click", loginForm);
+	document.querySelector("#login").addEventListener("click", loginForm);
 
 if (document.getElementById("logout")) {
 	document.getElementById("logout").addEventListener("click", logout);
@@ -67,6 +68,7 @@ if (document.getElementById("logout")) {
 </p>; */
 // 	<p class="mb-0"></p>
 // </div>;
+
 function buildEventCards(events) {
 	//events[0];
 	for (let i = 0; i < events.length; i++) {
@@ -93,6 +95,37 @@ function buildEventCards(events) {
 		$("#eventCardContainer").append(div1);
 	}
 }
+
+function viewPostsByDateRange() {
+	let from_post_date = $("#from_post_date").val();
+	let to_post_date = $("#to_post_date").val();
+	let _from_post_date = moment(from_post_date, dtpickerFormat);
+	let _to_post_date = moment(to_post_date, dtpickerFormat);
+
+	let from_post_date_seq = _from_post_date.format(format1);
+	let to_post_date_seq = _to_post_date.format(format1);
+	console.log(from_post_date_seq, to_post_date_seq);
+	fetch("/daterange", {
+		method: "POST",
+		body: JSON.stringify({
+			to_post_date: to_post_date_seq,
+			from_post_date: from_post_date_seq,
+		}),
+		headers: { "Content-Type": "application/json" },
+	})
+		.then((response) => {
+			console.log(response);
+			return response.json();
+		})
+		.then((data) => {
+			console.log(data);
+			//		buildEventsSection(data);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+}
+
 window.onload = function () {
 	//GET NEIGHBORHOODS
 
@@ -127,4 +160,21 @@ window.onload = function () {
 		.catch((err) => {
 			console.log(err);
 		});
+
+	$("#from_post_date").datepicker({
+		duration: "fast",
+		showAnim: "slideDown",
+		showOptions: { direction: "up" },
+		defaultDate: new Date(),
+	});
+	$("#from_post_date").datepicker("setDate", -15);
+
+	$("#to_post_date").datepicker({
+		duration: "fast",
+		showAnim: "slideDown",
+		showOptions: { direction: "up" },
+		defaultDate: new Date(),
+	});
+	$("#to_post_date").datepicker("setDate", new Date());
+	$("#viewPostButton").on("click", viewPostsByDateRange);
 };
