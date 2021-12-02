@@ -24,6 +24,7 @@ router.get("/", (req, res) => {
 //GET All current and future events
 router.get("/future", (req, res) => {
 	Event.findAll({
+		order: [["event_start_date", "ASC"]],
 		where: {
 			event_end_date: {
 				[Op.gt]: new Date(),
@@ -60,6 +61,7 @@ router.post("/daterange", (req, res) => {
 	console.log("@@@@@@@@@@@@@@@@");
 	console.log(req.body);
 	Event.findAll({
+		order: [["event_start_date", "ASC"]],
 		where: {
 			[Op.or]: [
 				{
