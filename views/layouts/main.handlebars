@@ -84,6 +84,8 @@
 										href="faq.html"
 									>Admin</a></li> }}
 							{{/if}}
+						
+              {{#if loggedIn}}<li class="nav-item" ><a class="nav-link" href="/userprofile">Welcome {{user_first_name}}!!</a> </li>{{/if}}
 							{{#if loggedIn}}
 								<li class="nav-item"><a
 										class="nav-link"
@@ -91,8 +93,6 @@
 										href="#"
 									>Log Out</a></li>
 							{{/if}}
-              {{#if loggedIn}}<li class="nav-item" ><a class="nav-link" href="/userprofile">Welcome {{user_first_name}}!!</a> </li>{{/if}}
-
 
 					</ul>
 				</div>
