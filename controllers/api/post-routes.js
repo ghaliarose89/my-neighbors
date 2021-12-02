@@ -152,7 +152,12 @@ router.put("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
 	//delete post by ID
-	console.log("id", req.params.id);
+	
+	// Comment.destroy({
+	// 	where: {
+	// 	id: req.params.id},
+	// });
+
 	Post.destroy({
 		where: {
 			id: req.params.id,
