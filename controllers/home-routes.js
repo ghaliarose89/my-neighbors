@@ -25,8 +25,8 @@ router.get("/signup", (req, res) => {
 });
 //getting all posts if the user loged in
 
-let to_date = moment().format("YYYY-MM-DD HH:mm:ss");
-let from_date = moment().subtract(15, "days").format("YYYY-MM-DD HH:mm:ss");
+let to_date = moment().add(1, "days").format("YYYY-MM-DD");
+let from_date = moment().subtract(15, "days").format("YYYY-MM-DD");
 router.get("/", (req, res) => {
 	console.log(from_date, to_date);
 	console.log("======================");

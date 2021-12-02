@@ -99,8 +99,11 @@ function buildEventCards(events) {
 function viewPostsByDateRange() {
 	let from_post_date = $("#from_post_date").val();
 	let to_post_date = $("#to_post_date").val();
-	let _from_post_date = moment(from_post_date, dtpickerFormat);
-	let _to_post_date = moment(to_post_date, dtpickerFormat);
+	let _from_post_date = moment(from_post_date, dtpickerFormat).subtract(
+		1,
+		"days"
+	);
+	let _to_post_date = moment(to_post_date, dtpickerFormat).add(1, "days");
 
 	let from_post_date_seq = _from_post_date.format(format1);
 	let to_post_date_seq = _to_post_date.format(format1);
