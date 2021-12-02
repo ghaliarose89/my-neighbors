@@ -112,9 +112,9 @@ function eventformSubmitHandler() {
 	console.log(event_start_date);
 	let _event_start_date = moment(event_start_date, "M/D/YYYY HH:mm:ss");
 	console.log(_event_start_date);
-	//	alert(_event_start_date);
+
 	let event_start_date_seq = _event_start_date.format(format1);
-	//alert(event_start_date_seq);
+
 
 	let event_end_date = $("#event_end_dt").val();
 	let event_end_time = $("#event_end_time").val();
@@ -123,9 +123,9 @@ function eventformSubmitHandler() {
 	console.log(event_end_date);
 	let _event_end_date = moment(event_end_date, "M/D/YYYY HH:mm:ss");
 	console.log(_event_end_date);
-	//	alert(_event_end_date);
+
 	let event_end_date_seq = _event_end_date.format(format1);
-	//	alert(event_end_date_seq);
+
 
 	if (
 		!validateEventData(
@@ -192,12 +192,12 @@ function validateEventData(
 	return rv;
 }
 
-//allInputs[i].value = ""
+
 
 function changeBgColor(box) {
 	console.log(box);
 	console.log();
-	//	this.style.backgroundColor = "white";
+	
 	box.classList.remove("bg-danger", "fw-bold");
 }
 $(document).ready(function () {
@@ -208,10 +208,7 @@ $(document).ready(function () {
 		defaultDate: new Date(),
 	});
 	$("#from_date").datepicker("setDate", new Date());
-	//  $("#from").on("change", function () {
-	// 		var selected = $(this).val();
-	// 		alert(selected);
-	// 	});
+	
 	$("#to_date").datepicker({
 		duration: "fast",
 		showAnim: "slideDown",
@@ -238,4 +235,4 @@ $(document).ready(function () {
 
 	viewEvents();
 });
-// };
+

@@ -52,22 +52,10 @@ if (document.getElementById("login"))
 
 if (document.getElementById("logout")) {
 	document.getElementById("logout").addEventListener("click", logout);
-	// document
-	// 	.getElementById("userprofileButton")
-	// 	.addEventListener("click", accessProfile);
-}
+	
+};
 
-// <div class="col mb-5 h-100">
-// 	<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
-// 		<i class="bi bi-calendar3"></i>
-// 	</div>
-// 	<h2 class="h5"></h2>
-/* <p class="mb-0">
-	Paragraph of text beneath the heading to explain the heading. Here is just a
-	bit more text.
-</p>; */
-// 	<p class="mb-0"></p>
-// </div>;
+
 
 function buildEventCards(events) {
 	//events[0];

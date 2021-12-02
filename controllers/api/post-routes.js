@@ -70,7 +70,7 @@ router.post("/daterange", (req, res) => {
 	})
 		.then((dbPostData) => {
 			const posts = dbPostData.map((post) => post.get({ plain: true }));
-			//console.log(posts);
+			
 			res.json(dbPostData);
 		})
 		.catch((err) => {
@@ -151,12 +151,6 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-	//delete post by ID
-	
-	// Comment.destroy({
-	// 	where: {
-	// 	id: req.params.id},
-	// });
 
 	Post.destroy({
 		where: {

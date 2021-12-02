@@ -25,7 +25,7 @@
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		/>
-		{{! <link rel="stylesheet" href="assets/css/login.css" /> }}
+		
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 
@@ -48,10 +48,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							{{!-- <li class="nav-item"><a
-									class="nav-link"
-									href="about.handlebars"
-								>About</a></li> --}}
+							
                 {{#if loggedIn}}
 								<li class="nav-item"><a class="nav-link" href="/createPost">Create a Post</a></li>
 							 {{else}}<li class="nav-item"><a class="nav-link" href="/signup">New User</a></li>{{/if}}
@@ -73,16 +70,10 @@
 									>
 										<li><a class="dropdown-item" href="/event-manager">Event
 												Manager</a></li>
-										{{!-- <li><a
-												class="dropdown-item"
-												href="portfolio-item.html"
-											>Portfolio Item</a></li> --}}
+										
 									</ul>
 								</li>
-								{{! <li class="nav-item"><a
-										class="nav-link text-warning"
-										href="faq.html"
-									>Admin</a></li> }}
+								
 							{{/if}}
 						
               {{#if loggedIn}}<li class="nav-item" ><a class="nav-link" href="/userprofile">Welcome {{user_first_name}}!!</a> </li>{{/if}}
@@ -115,22 +106,11 @@
 				</div>
 			</footer>
 		</main>
-		{{! <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> }}
+		
 
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-		{{! <script
-			src="	https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css"
-		></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"
-		></script> }}
-		{{! <script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
-		></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"
-		></script> }}
+		
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
 		></script>
