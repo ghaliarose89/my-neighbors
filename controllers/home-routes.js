@@ -9,9 +9,7 @@ router.get("/signup", (req, res) => {
 	Neighborhood.findAll()
 		.then((dbResultData) => {
 			console.log("---------------------------------------------");
-			//  console.log(res.json(dbResultData));
-			//  const neighborhoods = dbResultData.map({ plain: true });
-			//  const neighborhoods = dbResultData.map((n) => n.get({ plain: true }));
+			
 			const neighborhoods = dbResultData.map((n) => n.get({ plain: true }));
 			res.render("signup", {
 				neighborhoods,
@@ -60,12 +58,7 @@ router.get("/", (req, res) => {
 			},
 		],
 		where: {
-			// created_at: {
-			// 	[Op.lt]: to_date,
-			// },
-			// created_at: {
-			// 	[Op.gt]: from_date,
-			// },
+			
 			created_at: {
 				[Op.between]: [from_date, to_date],
 			},
@@ -88,57 +81,6 @@ router.get("/", (req, res) => {
 		});
 });
 
-//DATERANGE /daterange
-// router.post("/daterange", (req, res) => {
-// 	console.log("POST WITH DATERANGE");
-// 	Post.findAll({
-// 		order: [["created_at", "DESC"]],
-// 		attributes: [
-// 			"id",
-// 			"post_details",
-// 			"title",
-// 			"created_at",
-
-// 			[
-// 				sequelize.literal(
-// 					"(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
-// 				),
-// 				"comment_count",
-// 			],
-// 		],
-// 		include: [
-// 			{
-// 				model: Comment,
-// 				attributes: ["id", "comment_text", "post_id", "user_id"],
-// 				include: {
-// 					model: User,
-// 					attributes: ["first_name", "last_name"],
-// 				},
-// 			},
-// 			{
-// 				model: User,
-// 				attributes: ["first_name", "last_name"],
-// 			},
-// 		],
-// 		where: {
-// 			created_at: {
-// 				[Op.lt]: req.body.to_post_date,
-// 			},
-// 			created_at: {
-// 				[Op.gt]: req.body.from_post_date,
-// 			},
-// 		},
-// 	})
-// 		.then((dbPostData) => {
-// 			const posts = dbPostData.map((post) => post.get({ plain: true }));
-// 			//console.log(posts);
-// 			res.json(dbPostData);
-// 		})
-// 		.catch((err) => {
-// 			console.log(err);
-// 			res.status(500).json(err);
-// 		});
-// });
 
 //USER PROFILE
 

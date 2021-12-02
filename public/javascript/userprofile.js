@@ -93,13 +93,7 @@ const updateUserProfile = async (event) => {
 			}
 		});
 
-	// if (response.ok) {
-	// 	console.log("success");
-	// 	document.location.replace("/");
-	// } else {
-	// 	alert(response.statusText);
-	// 	printErrorMsg(response.statusText);
-	// }
+	
 };
 
 function validateUserAddress(address, city, state, zip) {
@@ -207,21 +201,10 @@ function updateData() {
 		password,
 	};
 
-	// if (!validateUser(user)) {
-	// 	printErrorMsg(
-	// 		"Required fields are missing." +
-	// 			invalid_neighborhood_msg +
-	// 			" Please try again."
-	// 	);
-	// 	return false;
-	// }
+	
 
 	const fetchRequest = "/api/users/" + user_id;
-	// alert(address);
-	// if (password === "********") {
-	// 	printErrorMsg("Password cannot be blank.");
-	// 	return false;
-	// }
+	
 	return fetch(fetchRequest, {
 		method: "PUT",
 		body: JSON.stringify({

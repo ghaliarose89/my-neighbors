@@ -6,11 +6,7 @@ const { Op } = require("sequelize");
 //GET all events
 router.get("/", (req, res) => {
 	Event.findAll({
-		// where: {
-		// 	event_end_date: {
-		// 		[Op.gt]: new Date(),
-		// 	},
-		// },
+		
 	})
 		.then((dbResult) => {
 			res.json(dbResult);
@@ -56,7 +52,7 @@ router.get("/prev", (req, res) => {
 			res.status(500).json(err);
 		});
 });
-
+// Date-ragne route
 router.post("/daterange", (req, res) => {
 	console.log("@@@@@@@@@@@@@@@@");
 	console.log(req.body);
@@ -75,26 +71,7 @@ router.post("/daterange", (req, res) => {
 					},
 				},
 			],
-			// 	[Op.or]: [
-			// 		{
-			// 			event_end_date: {
-			// 				[Op.gt]: req.body.event_start_date,
-			// 			},
-			// 		},
-			// 		{
-			// 			event_start_date: {
-			// 				[Op.lt]: req.body.event_end_date,
-			// 			},
-			// 		},
-			// 	],
-			// },
-			// where: {
-			// 	event_end_date: {
-			// 		[Op.lt]: req.body.event_end_date,
-			// 	},
-			// 	event_start_date: {
-			// 		[Op.gt]: req.body.event_start_date,
-			// 	},
+			
 		},
 	})
 		.then((dbResult) => {

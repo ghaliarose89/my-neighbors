@@ -126,10 +126,6 @@ router.post("/logout", (req, res) => {
 });
 //Updating user data
 router.put("/:id", (req, res) => {
-	console.log(req.body);
-	// expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-
-	// pass in req.body instead to only update what's passed through
 	User.update(req.body, {
 		individualHooks: true,
 		where: {
@@ -186,17 +182,6 @@ router.post("/smartystreets", (req, res) => {
 			//console.log("address verification failed %%%%%%%%%%");
 			res.status(500).json({ message: "address verification failed" });
 		});
-	// .then((response1) => {
-	//	response1.lookups.map((lookup) => console.log(lookup.result));
-
-	//	return true;
-
-	// if (data.length > 0) {
-	// 	console.log("address verified**************");
-
-	// } else {
-	// 	console.log("failed again");
-	// 	res.status(500).json({ message: "address verification failed" });
-	// }
+	
 });
 module.exports = router;

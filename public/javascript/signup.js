@@ -1,4 +1,4 @@
-//let neighborhoods = [];
+
 
 //--------------------------------------------------------------------
 function validateUserAddress(address, city, state, zip) {
@@ -106,38 +106,7 @@ const signupFormHandler = async (event) => {
 			}
 		});
 
-	// if (!validateUser(user)) {
-	// 	printErrorMsg(
-	// 		"Required fields are missing." +
-	// 			invalid_neighborhood_msg +
-	// 			" Please try again."
-	// 	);
-	// 	return false;
-	// }
-
-	// const response = await fetch("/api/users", {
-	// 	method: "POST",
-	// 	body: JSON.stringify({
-	// 		first_name,
-	// 		last_name,
-	// 		address,
-	// 		city,
-	// 		state,
-	// 		zip,
-	// 		email,
-	// 		password,
-	// 		neighbourhood_id: 1,
-	// 		is_admin: 1,
-	// 	}),
-	// 	headers: { "Content-Type": "application/json" },
-	// });
-	// if (response.ok) {
-	// 	console.log("success");
-	// 	document.location.replace("/");
-	// } else {
-	// 	alert(response.statusText);
-	// 	printErrorMsg(response.statusText);
-	// }
+	
 };
 
 //-=-----------------------------------------------------------------------
@@ -271,27 +240,15 @@ function printErrorMsg(msg) {
 	errormsgHolder.setAttribute("style", "font-weight:bold;color:red;");
 	errormsgHolder.classList.remove("d-none");
 }
-// const loadNeighborhoodsData = async () => {
-// 	const response = await fetch("/api/neighborhoods");
-// 	if (response.ok) {
-// 		const neighborhoods_data = response.json();
-// 		return neighborhoods_data;
-// 	} else return null;
-// };
+
 const loadData = () => {
 	let allInputs = document.querySelectorAll(".form-control,.form-select");
 	for (let i = 0; i < allInputs.length; i++) {
 		//allInputs[i].value = ""
 		allInputs[i].addEventListener("focus", changeBgColor);
 	}
-	console.log(allInputs);
-	// 	loadNeighborhoodsData()
-	// 		.then((data) => {
-	// 			neighborhoods = data;
-	// 			console.log(neighborhoods);
-	// 			return data;
-	// 		})
-	// 		.then((err) => {});
+	
+	
 };
 
 function changeBgColor() {

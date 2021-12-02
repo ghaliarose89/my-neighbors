@@ -27,15 +27,6 @@ Post.belongsToMany(User, {
 	//	onDelete: "SET NULL",
 });
 
-// LikedPosts.belongsTo(User, {
-// 	foreignKey: "user_id",
-// 	onDelete: "SET NULL",
-// });
-
-// LikedPosts.belongsTo(Post, {
-// 	foreignKey: "post_id",
-// 	onDelete: "SET NULL",
-// });
 
 Comment.belongsTo(User, {
 	foreignKey: "user_id",

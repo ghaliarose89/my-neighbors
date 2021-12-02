@@ -36,18 +36,5 @@ async function editPosttBtn(thisBtn) {
   document.location.replace(`/editPost/${post_id}`);
 };
 
-// async function deletePosttBtn(event) {
-//   event.preventDefault();
-//   const post_id = document.querySelector('#post_id').value;
-
-//   const response = await fetch(`/api/comments/${post_id}`, {
-//     method: 'DELETE'
-//   });
-//   const response = await fetch(`/api/posts/${post_id}`, {
-//     method: 'DELETE'
-//   });
-
-//   document.location.replace(`/`);
-// };
 
 
