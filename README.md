@@ -23,6 +23,6 @@ After installing npm and running the app, the app will look like the following s
 ### Contribution:
 Made with ❤️️ by Ghalia Sami and Sonali Sohoni
 For more information, Please contact us.
-Email: ghaliarose89@gmail.com , 
+Email: ghaliarose89@gmail.com ,sonali.sohoni@gmail.com
 
-### ©️ [2021] [Ghalia Sami] [Sonali ]
+### ©️ [2021] [Ghalia Sami] [Sonali Sohoni ] [Christian Zuniga]
