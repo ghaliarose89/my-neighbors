@@ -115,7 +115,6 @@ function eventformSubmitHandler() {
 
 	let event_start_date_seq = _event_start_date.format(format1);
 
-
 	let event_end_date = $("#event_end_dt").val();
 	let event_end_time = $("#event_end_time").val();
 	console.log(event_end_time);
@@ -125,7 +124,6 @@ function eventformSubmitHandler() {
 	console.log(_event_end_date);
 
 	let event_end_date_seq = _event_end_date.format(format1);
-
 
 	if (
 		!validateEventData(
@@ -192,12 +190,16 @@ function validateEventData(
 	return rv;
 }
 
-
+function cancelEventHandler(event) {
+	event.preventDefault();
+	console.log("joo");
+	document.location = "/";
+}
 
 function changeBgColor(box) {
 	console.log(box);
 	console.log();
-	
+
 	box.classList.remove("bg-danger", "fw-bold");
 }
 $(document).ready(function () {
@@ -208,7 +210,7 @@ $(document).ready(function () {
 		defaultDate: new Date(),
 	});
 	$("#from_date").datepicker("setDate", new Date());
-	
+
 	$("#to_date").datepicker({
 		duration: "fast",
 		showAnim: "slideDown",
@@ -232,7 +234,6 @@ $(document).ready(function () {
 	console.log($("#viewEventsButton"));
 	$("#viewEventsButton").on("click", viewEvents);
 	$("#event_submit").on("click", eventformSubmitHandler);
-
+	$("#event_cancel").on("click", cancelEventHandler);
 	viewEvents();
 });
-
