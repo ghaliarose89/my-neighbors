@@ -1,7 +1,7 @@
 # My-Neighbors
 
 ## Purpose:
-Tracking Neighborhood Events, News, Services, and Residents.
+A must have app to track Neighborhood Events, News, Services, and Residents.
 
 ## Description:
  My-Neighbors is a helpful app that allow:
